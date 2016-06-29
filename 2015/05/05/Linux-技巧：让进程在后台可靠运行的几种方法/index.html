@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Linux 技巧：让进程在后台可靠运行的几种方法 | Weiwei Zhong&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Weiwei Zhong's blog">
+    <meta name="author" content="钟蔚蔚">
+    <meta name="description" content="Tyrion" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Weiwei Zhong&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_BLANK" class="animsition-link">node</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.liqilei.com/" class="animsition-link">Qilei Li</a></li>
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://pangjiuzala.github.io/" class="animsition-link">Xing Liu</a></li>
+                    
+                    <li><a href="http://www.changhuiyuan.com/" class="animsition-link">Huiyuan Chang</a></li>
+                    
+                    <li><a href="http://www.jianshu.com/users/2e5186b9dd1c/latest_articles" class="animsition-link">Ke Xu</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/profile.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Weiwei Zhong's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-05-04T19:06:38.000Z" itemprop="datePublished">
+          2015-05-05
+      </time>
+    
+    
+    | 
+    <a href='/tags/Linux/'>Linux</a>
+    
+    
+</span>
+                <h1>Linux 技巧：让进程在后台可靠运行的几种方法</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>想让进程在断开连接后依然保持运行？如果该进程已经开始运行了该如何补救？ 如果有大量这类需求如何简化操作？</p>
+<p>我们经常会碰到这样的问题，用 telnet/ssh 登录了远程的 Linux 服务器，运行了一些耗时较长的任务， 结果却由于网络的不稳定导致任务中途失败。如何让命令提交后不受本地关闭终端窗口/网络断开连接的干扰呢？下面举了一些例子， 您可以针对不同的场景选择不同的方式来处理这个问题。<br><strong>nohup/setsid/&amp;</strong><br><strong>场景：</strong><br>如果只是临时有一个命令需要长时间运行，什么方法能最简便的保证它在后台稳定运行呢？<br>hangup 名称的来由<br>在 Unix 的早期版本中，每个终端都会通过 modem 和系统通讯。当用户 logout 时，modem 就会挂断（hang up）电话。 同理，当 modem 断开连接时，就会给终端发送 hangup 信号来通知其关闭所有子进程。<br><strong>解决方法：</strong><br>我们知道，当用户注销（logout）或者网络断开时，终端会收到 HUP（hangup）信号从而关闭其所有子进程。因此，我们的解决办法就有两种途径：要么让进程忽略 HUP 信号，要么让进程运行在新的会话里从而成为不属于此终端的子进程。</p>
+<ol>
+<li><p>nohup<br>nohup 无疑是我们首先想到的办法。顾名思义，nohup 的用途就是让提交的命令忽略 hangup 信号。让我们先来看一下 nohup 的帮助信息：<br> NOHUP(1)                        User Commands                        NOHUP(1)</p>
+<p> NAME</p>
+<pre><code>nohup - run a command immune to hangups, with output to a non-tty
+</code></pre><p> SYNOPSIS</p>
+<pre><code>nohup COMMAND [ARG]...
+nohup OPTION
+</code></pre><p> DESCRIPTION</p>
+<pre><code>Run COMMAND, ignoring hangup signals.
+
+--help display this help and exit
+
+--version
+       output version information and exit
+</code></pre><p>可见，nohup 的使用是十分方便的，只需在要处理的命令前加上 nohup 即可，标准输出和标准错误缺省会被重定向到 nohup.out 文件中。一般我们可在结尾加上”&amp;”来将命令同时放入后台运行，也可用”&gt;filename 2&gt;&amp;1”来更改缺省的重定向文件名。<br>nohup 示例<br> [root@pvcent107 ~]# nohup ping www.ibm.com &amp;<br> [1] 3059<br> nohup: appending output to `nohup.out’<br> [root@pvcent107 ~]# ps -ef |grep 3059<br> root      3059   984  0 21:06 pts/3    00:00:00 ping www.ibm.com<br> root      3067   984  0 21:06 pts/3    00:00:00 grep 3059<br> [root@pvcent107 ~]#<br><strong>2。setsid</strong><br>nohup 无疑能通过忽略 HUP 信号来使我们的进程避免中途被中断，但如果我们换个角度思考，如果我们的进程不属于接受 HUP 信号的终端的子进程，那么自然也就不会受到 HUP 信号的影响了。setsid 就能帮助我们做到这一点。让我们先来看一下 setsid 的帮助信息：<br> SETSID(8)                 Linux Programmer’s Manual                 SETSID(8)</p>
+<p> NAME</p>
+<pre><code>setsid - run a program in a new session
+</code></pre><p> SYNOPSIS</p>
+<pre><code>setsid program [ arg ... ]
+</code></pre><p> DESCRIPTION</p>
+<pre><code>setsid runs a program in a new session.
+</code></pre><p>可见 setsid 的使用也是非常方便的，也只需在要处理的命令前加上 setsid 即可。<br><strong>setsid 示例</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># <span class="selector-tag">setsid</span> <span class="selector-tag">ping</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># <span class="selector-tag">ps</span> <span class="selector-tag">-ef</span> |<span class="selector-tag">grep</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">root</span>     <span class="selector-tag">31094</span>     <span class="selector-tag">1</span>  <span class="selector-tag">0</span> <span class="selector-tag">07</span><span class="selector-pseudo">:28</span> ?        <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">ping</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">root</span>     <span class="selector-tag">31102</span> <span class="selector-tag">29217</span>  <span class="selector-tag">0</span> <span class="selector-tag">07</span><span class="selector-pseudo">:29</span> <span class="selector-tag">pts</span>/<span class="selector-tag">4</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">grep</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span>#</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>值得注意的是，上例中我们的进程 ID(PID)为31094，而它的父 ID（PPID）为1（即为 init 进程 ID），并不是当前终端的进程 ID。请将此例与nohup 例中的父 ID 做比较。<br><strong>3。&amp;</strong><br>这里还有一个关于 subshell 的小技巧。我们知道，将一个或多个命名包含在“()”中就能让这些命令在子 shell 中运行中，从而扩展出很多有趣的功能，我们现在要讨论的就是其中之一。<br>当我们将”&amp;”也放入“()”内之后，我们就会发现所提交的作业并不在作业列表中，也就是说，是无法通过jobs来查看的。让我们来看看为什么这样就能躲过 HUP 信号的影响吧。<br><strong>subshell 示例</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># (ping www.ibm.com &amp;)</span><br><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># <span class="selector-tag">ps</span> <span class="selector-tag">-ef</span> |<span class="selector-tag">grep</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">root</span>     <span class="selector-tag">16270</span>     <span class="selector-tag">1</span>  <span class="selector-tag">0</span> <span class="selector-tag">14</span><span class="selector-pseudo">:13</span> <span class="selector-tag">pts</span>/<span class="selector-tag">4</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">ping</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-tag">root</span>     <span class="selector-tag">16278</span> <span class="selector-tag">15362</span>  <span class="selector-tag">0</span> <span class="selector-tag">14</span><span class="selector-pseudo">:13</span> <span class="selector-tag">pts</span>/<span class="selector-tag">4</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">grep</span> <span class="selector-tag">www</span><span class="selector-class">.ibm</span><span class="selector-class">.com</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span>#</span><br></pre></td></tr></table></figure>
+<p>从上例中可以看出，新提交的进程的父 ID（PPID）为1（init 进程的 PID），并不是当前终端的进程 ID。因此并不属于当前终端的子进程，从而也就不会受到当前终端的 HUP 信号的影响了。<br>回页首<br>disown<br><strong>场景：</strong><br>我们已经知道，如果事先在命令前加上 nohup 或者 setsid 就可以避免 HUP 信号的影响。但是如果我们未加任何处理就已经提交了命令，该如何补救才能让它避免 HUP 信号的影响呢？<br><strong>解决方法：</strong><br>这时想加 nohup 或者 setsid 已经为时已晚，只能通过作业调度和 disown 来解决这个问题了。让我们来看一下 disown 的帮助信息：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">disown [-ar] [-h] [jobspec ...]</span><br><span class="line">	Without options, <span class="keyword">each</span> jobspec is  removed  <span class="built_in">from</span>  <span class="keyword">the</span>  table  <span class="keyword">of</span></span><br><span class="line">	active  jobs.   If  <span class="keyword">the</span> -h option is given, <span class="keyword">each</span> jobspec is <span class="keyword">not</span></span><br><span class="line">	removed <span class="built_in">from</span> <span class="keyword">the</span> table, but is marked so  that  SIGHUP  is  <span class="keyword">not</span></span><br><span class="line">	sent  <span class="built_in">to</span> <span class="keyword">the</span> job <span class="keyword">if</span> <span class="keyword">the</span> <span class="built_in">shell</span> receives <span class="keyword">a</span> SIGHUP.  If no jobspec</span><br><span class="line">	is present, <span class="keyword">and</span> neither <span class="keyword">the</span> -<span class="keyword">a</span> nor <span class="keyword">the</span> -r option  is  supplied,</span><br><span class="line">	<span class="keyword">the</span>  current  job  is  used.  If no jobspec is supplied, <span class="keyword">the</span> -<span class="keyword">a</span></span><br><span class="line">	option means <span class="built_in">to</span> remove <span class="keyword">or</span> mark all jobs; <span class="keyword">the</span> -r option  <span class="keyword">without</span></span><br><span class="line">	<span class="keyword">a</span>  jobspec  argument  restricts operation <span class="built_in">to</span> running jobs.  The</span><br><span class="line">	<span class="literal">return</span> <span class="built_in">value</span> is <span class="number">0</span> unless <span class="keyword">a</span> jobspec does  <span class="keyword">not</span>  specify  <span class="keyword">a</span>  valid</span><br><span class="line">	job.</span><br></pre></td></tr></table></figure>
+<p>可以看出，我们可以用如下方式来达成我们的目的。<br>灵活运用 CTRL-z<br>在我们的日常工作中，我们可以用 CTRL-z 来将当前进程挂起到后台暂停运行，执行一些别的操作，然后再用 fg 来将挂起的进程重新放回前台（也可用 bg 来将挂起的进程放在后台）继续运行。这样我们就可以在一个终端内灵活切换运行多个任务，这一点在调试代码时尤为有用。因为将代码编辑器挂起到后台再重新放回时，光标定位仍然停留在上次挂起时的位置，避免了重新定位的麻烦。<br>用disown -h jobspec来使某个作业忽略HUP信号。<br>用disown -ah 来使所有的作业都忽略HUP信号。<br>用disown -rh 来使正在运行的作业忽略HUP信号。<br>需要注意的是，当使用过 disown 之后，会将把目标作业从作业列表中移除，我们将不能再使用jobs来查看它，但是依然能够用ps -ef查找到它。<br>但是还有一个问题，这种方法的操作对象是作业，如果我们在运行命令时在结尾加了”&amp;”来使它成为一个作业并在后台运行，那么就万事大吉了，我们可以通过jobs命令来得到所有作业的列表。但是如果并没有把当前命令作为作业来运行，如何才能得到它的作业号呢？答案就是用 CTRL-z（按住Ctrl键的同时按住z键）了！<br>CTRL-z 的用途就是将当前进程挂起（Suspend），然后我们就可以用jobs命令来查询它的作业号，再用bg jobspec来将它放入后台并继续运行。需要注意的是，如果挂起会影响当前进程的运行结果，请慎用此方法。<br><strong>disown 示例1（如果提交命令时已经用“&amp;”将命令放入后台运行，则可以直接使用“disown”）</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">cp</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile</span> <span class="selector-tag">&amp;</span></span><br><span class="line"><span class="selector-attr">[1]</span> <span class="selector-tag">4825</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">jobs</span></span><br><span class="line"><span class="selector-attr">[1]</span>+  <span class="selector-tag">Running</span>                 <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile</span> <span class="selector-tag">&amp;</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">disown</span> <span class="selector-tag">-h</span> %<span class="selector-tag">1</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">ps</span> <span class="selector-tag">-ef</span> |<span class="selector-tag">grep</span> <span class="selector-tag">largeFile</span></span><br><span class="line"><span class="selector-tag">root</span>      <span class="selector-tag">4825</span>   <span class="selector-tag">968</span>  <span class="selector-tag">1</span> <span class="selector-tag">09</span><span class="selector-pseudo">:46</span> <span class="selector-tag">pts</span>/<span class="selector-tag">4</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile</span></span><br><span class="line"><span class="selector-tag">root</span>      <span class="selector-tag">4853</span>   <span class="selector-tag">968</span>  <span class="selector-tag">0</span> <span class="selector-tag">09</span><span class="selector-pseudo">:46</span> <span class="selector-tag">pts</span>/<span class="selector-tag">4</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">grep</span> <span class="selector-tag">largeFile</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">logout</span></span><br></pre></td></tr></table></figure>
+<p>disown 示例2（如果提交命令时未使用“&amp;”将命令放入后台运行，可使用 CTRL-z 和“bg”将其放入后台，再使用“disown”）</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">cp</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile2</span></span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[1]</span>+  <span class="selector-tag">Stopped</span>                 <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile2</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">bg</span> %<span class="selector-tag">1</span></span><br><span class="line"><span class="selector-attr">[1]</span>+ <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile2</span> <span class="selector-tag">&amp;</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">jobs</span></span><br><span class="line"><span class="selector-attr">[1]</span>+  <span class="selector-tag">Running</span>                 <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile2</span> <span class="selector-tag">&amp;</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">disown</span> <span class="selector-tag">-h</span> %<span class="selector-tag">1</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span># <span class="selector-tag">ps</span> <span class="selector-tag">-ef</span> |<span class="selector-tag">grep</span> <span class="selector-tag">largeFile2</span></span><br><span class="line"><span class="selector-tag">root</span>      <span class="selector-tag">5790</span>  <span class="selector-tag">5577</span>  <span class="selector-tag">1</span> <span class="selector-tag">10</span><span class="selector-pseudo">:04</span> <span class="selector-tag">pts</span>/<span class="selector-tag">3</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">cp</span> <span class="selector-tag">-i</span> <span class="selector-tag">-r</span> <span class="selector-tag">testLargeFile</span> <span class="selector-tag">largeFile2</span></span><br><span class="line"><span class="selector-tag">root</span>      <span class="selector-tag">5824</span>  <span class="selector-tag">5577</span>  <span class="selector-tag">0</span> <span class="selector-tag">10</span><span class="selector-pseudo">:05</span> <span class="selector-tag">pts</span>/<span class="selector-tag">3</span>    <span class="selector-tag">00</span><span class="selector-pseudo">:00</span><span class="selector-pseudo">:00</span> <span class="selector-tag">grep</span> <span class="selector-tag">largeFile2</span></span><br><span class="line"><span class="selector-attr">[root@pvcent107 build]</span>#</span><br></pre></td></tr></table></figure>
+<p><strong>screen</strong><br><strong>场景：</strong><br>我们已经知道了如何让进程免受 HUP 信号的影响，但是如果有大量这种命令需要在稳定的后台里运行，如何避免对每条命令都做这样的操作呢？<br><strong>解决方法：</strong><br>此时最方便的方法就是 screen 了。简单的说，screen 提供了 ANSI/VT100 的终端模拟器，使它能够在一个真实终端下运行多个全屏的伪终端。screen 的参数很多，具有很强大的功能，我们在此仅介绍其常用功能以及简要分析一下为什么使用 screen 能够避免 HUP 信号的影响。我们先看一下 screen 的帮助信息：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">SCREEN(<span class="number">1</span>)                                                           SCREEN(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">NAME</span><br><span class="line">       screen - screen manager <span class="keyword">with</span> VT100/ANSI terminal emulation</span><br><span class="line"></span><br><span class="line">SYNOPSIS</span><br><span class="line">       screen [ -options ] [ cmd [ args ] ]</span><br><span class="line">       screen -r [[pid.]tty[.host]]</span><br><span class="line">       screen -r sessionowner/[[pid.]tty[.host]]</span><br><span class="line"></span><br><span class="line">DESCRIPTION</span><br><span class="line">       Screen  is  <span class="keyword">a</span>  full-screen  window manager that multiplexes <span class="keyword">a</span> physical</span><br><span class="line">       terminal between several  processes  (typically  interactive  shells).</span><br><span class="line">       Each  virtual  terminal provides <span class="keyword">the</span> functions <span class="keyword">of</span> <span class="keyword">a</span> DEC VT100 terminal</span><br><span class="line">       <span class="keyword">and</span>, <span class="keyword">in</span> addition, several control functions <span class="built_in">from</span> <span class="keyword">the</span>  ISO  <span class="number">6429</span>  (ECMA</span><br><span class="line">       <span class="number">48</span>,  ANSI  X3<span class="number">.64</span>)  <span class="keyword">and</span> ISO <span class="number">2022</span> standards (e.g. insert/<span class="built_in">delete</span> <span class="built_in">line</span> <span class="keyword">and</span></span><br><span class="line">       support <span class="keyword">for</span> multiple <span class="keyword">character</span> sets).  There is <span class="keyword">a</span>  scrollback  history</span><br><span class="line">       buffer  <span class="keyword">for</span>  <span class="keyword">each</span> virtual terminal <span class="keyword">and</span> <span class="keyword">a</span> copy-<span class="keyword">and</span>-paste mechanism that</span><br><span class="line">       allows moving <span class="keyword">text</span> regions between windows.</span><br></pre></td></tr></table></figure>
+<p>使用 screen 很方便，有以下几个常用选项：<br>用screen -dmS session name来建立一个处于断开模式下的会话（并指定其会话名）。<br>用screen -list 来列出所有会话。<br>用screen -r session name来重新连接指定会话。<br>用快捷键CTRL-a d 来暂时断开当前会话。<br><strong>screen 示例</strong></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@pvcent107 ~]<span class="comment"># screen -dmS Urumchi</span></span><br><span class="line">[root@pvcent107 ~]<span class="comment"># screen -list</span></span><br><span class="line">There <span class="keyword">is</span> a screen on:</span><br><span class="line">        <span class="number">12842.</span>Urumchi   (Detached)</span><br><span class="line"><span class="number">1</span> Socket <span class="keyword">in</span> /tmp/screens/S-root.</span><br><span class="line"></span><br><span class="line">[root@pvcent107 ~]<span class="comment"># screen -r Urumchi</span></span><br></pre></td></tr></table></figure>
+<p>当我们用“-r”连接到 screen 会话后，我们就可以在这个伪终端里面为所欲为，再也不用担心 HUP 信号会对我们的进程造成影响，也不用给每个命令前都加上“nohup”或者“setsid”了。这是为什么呢？让我来看一下下面两个例子吧。<br><strong>1. 未使用 screen 时新进程的进程树</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># <span class="selector-tag">ping</span> <span class="selector-tag">www</span><span class="selector-class">.google</span><span class="selector-class">.com</span> &amp;</span><br><span class="line"><span class="selector-attr">[1]</span> 9499</span><br><span class="line"><span class="selector-attr">[root@pvcent107 ~]</span># <span class="selector-tag">pstree</span> <span class="selector-tag">-H</span> 9499</span><br><span class="line"><span class="selector-tag">init</span>─┬─<span class="selector-tag">Xvnc</span></span><br><span class="line">     ├─<span class="selector-tag">acpid</span></span><br><span class="line">     ├─<span class="selector-tag">atd</span></span><br><span class="line">     ├─2*<span class="selector-attr">[sendmail]</span>	</span><br><span class="line">     ├─<span class="selector-tag">sshd</span>─┬─<span class="selector-tag">sshd</span>───<span class="selector-tag">bash</span>───<span class="selector-tag">pstree</span></span><br><span class="line">     │       └─<span class="selector-tag">sshd</span>───<span class="selector-tag">bash</span>───<span class="selector-tag">ping</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看出，未使用 screen 时我们所处的 bash 是 sshd 的子进程，当 ssh 断开连接时，HUP 信号自然会影响到它下面的所有子进程（包括我们新建立的 ping 进程）。<br><strong>2. 使用了 screen 后新进程的进程树</strong></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@pvcent107</span> ~]<span class="meta"># screen -r Urumchi</span></span><br><span class="line">[root<span class="symbol">@pvcent107</span> ~]<span class="meta"># ping www.ibm.com &amp;</span></span><br><span class="line">[<span class="number">1</span>] <span class="number">9488</span></span><br><span class="line">[root<span class="symbol">@pvcent107</span> ~]<span class="meta"># pstree -H 9488</span></span><br><span class="line">init─┬─Xvnc</span><br><span class="line">     ├─acpid</span><br><span class="line">     ├─atd</span><br><span class="line">     ├─screen───bash───<span class="built_in">ping</span></span><br><span class="line">     ├─<span class="number">2</span>*[sendmail]</span><br></pre></td></tr></table></figure>
+<p>而使用了 screen 后就不同了，此时 bash 是 screen 的子进程，而 screen 是 init（PID为1）的子进程。那么当 ssh 断开连接时，HUP 信号自然不会影响到 screen 下面的子进程了。<br>总结<br>现在几种方法已经介绍完毕，我们可以根据不同的场景来选择不同的方案。nohup/setsid 无疑是临时需要时最方便的方法，disown 能帮助我们来事后补救当前已经在运行了的作业，而 screen 则是在大批量操作时不二的选择了。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2015/05/11/Permissions-0644-for-‘-root-ssh-id-rsa’-are-too-open处理/" style="float: left;">
+        ← Permissions 0644 for ‘/root/.ssh/id_rsa’ are too open处理
+    </a>
+    
+    
+    <a class="pull-right" href="/2015/04/07/nginx配置文件详解/">
+        nginx配置文件详解 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/" data-title="Linux 技巧：让进程在后台可靠运行的几种方法" data-url="http://yoursite.com/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 钟蔚蔚. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>

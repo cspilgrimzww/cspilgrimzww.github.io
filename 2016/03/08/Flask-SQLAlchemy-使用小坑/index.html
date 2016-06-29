@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Flask-SQLAlchemy-使用小坑 | Weiwei Zhong&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Weiwei Zhong's blog">
+    <meta name="author" content="钟蔚蔚">
+    <meta name="description" content="Tyrion" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Weiwei Zhong&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_BLANK" class="animsition-link">node</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.liqilei.com/" class="animsition-link">Qilei Li</a></li>
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://pangjiuzala.github.io/" class="animsition-link">Xing Liu</a></li>
+                    
+                    <li><a href="http://www.changhuiyuan.com/" class="animsition-link">Huiyuan Chang</a></li>
+                    
+                    <li><a href="http://www.jianshu.com/users/2e5186b9dd1c/latest_articles" class="animsition-link">Ke Xu</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/profile.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Weiwei Zhong's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-03-08T14:05:05.000Z" itemprop="datePublished">
+          2016-03-08
+      </time>
+    
+</span>
+                <h1>Flask-SQLAlchemy-使用小坑</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>今天在搭建 Flask-SQLAlchemy 的demo时碰到了一些小的坑，记录下来，防止以后再范，本文将持续更新，记录一些Flask-SQLAlchemy 的使用小提示</p>
+<p>对于在windows下无法使用pip 安装 mysql-python模块 和 flask-mysql模块的同学，请到这里下载32位或者64位的安装包进行安装 <a href="http://pan.baidu.com/s/1qWz7I5e" target="_blank" rel="external">http://pan.baidu.com/s/1qWz7I5e</a></p>
+<p>1、封装db对象<br>Flask封装了一个db对象，官方示例如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask<span class="selector-class">.ext</span><span class="selector-class">.sqlalchemy</span> import SQLAlchemy</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app<span class="selector-class">.config</span>[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = <span class="string">'sqlite:////tmp/test.db'</span></span><br><span class="line">db = SQLAlchemy(app)</span><br><span class="line"><span class="selector-id">#your</span> code</span><br></pre></td></tr></table></figure></p>
+<p>但是在实际使用过程中发现，当Modal有多个文件时db对象每次都是一个新的实例，无法使用 db.create_all() 来一起创建数据表和使用db.session操作数据对象，于是我这样处理了下，不知道对不对<br>在Modals文件夹中，创建一个 dbModal.py 文件，用来保存 db实例，代码如下：<br><figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask.ext.sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> restapi <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br></pre></td></tr></table></figure></p>
+<p>这样其他 Modals 和需要数据库访问的文件只要如下引入 db 实例就可以了<br>from restapi.models.dbModel import db</p>
+<p>2、一对多的Modal定义：<br>经常会碰到这样的场景，比如有用户表：Plat_User（平台用户），还有一个表用来存储用户的多个备选头像：Plat_User_Face（平台用户头像表），这就形成了One（用户表）to Many（头像表），我们可以如下分别定义两张表即可：<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="title">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> flask.ext.sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="title">from</span> restapi <span class="keyword">import</span> app</span><br><span class="line"><span class="title">from</span> restapi.models.dbModel <span class="keyword">import</span> db</span><br><span class="line"><span class="title">from</span> restapi.models.faceModel <span class="keyword">import</span> *</span><br><span class="line"><span class="title">from</span> restapi.bussiness.<span class="type">UtilsBl</span> <span class="keyword">import</span> DumpToDict</span><br><span class="line"><span class="keyword">import</span> json</span><br></pre></td></tr></table></figure></p>
+<p>#vip用户的model<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">PlatUser</span>(<span class="title">db</span>.<span class="type">Model</span>, <span class="type">DumpToDict</span>):</span><br><span class="line">    #表名</span><br><span class="line">    __tablename__ = '<span class="type">Plat_User'</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">Id</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">Integer</span>, <span class="title">primary_key</span>=<span class="type">True</span>)</span><br><span class="line">    <span class="type">UserName</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">String(50)</span>)</span><br><span class="line">    <span class="type">Password</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">String(50)</span>)</span><br><span class="line">    <span class="type">UserTips</span> = db.deferred(<span class="title">db</span>.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">Text</span>))</span><br><span class="line">    <span class="type">WriteTime</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">DateTime</span>, <span class="title">onupdate</span>=<span class="title">datetime</span>.<span class="title">now</span>, <span class="title">default</span>=<span class="title">datetime</span>.<span class="title">now</span>)</span><br><span class="line">    <span class="type">Faces</span> = db.relationship('<span class="type">PlatUserFace</span>', <span class="title">backref</span>='<span class="type">Plat_User</span>', <span class="title">lazy</span>='<span class="title">select'</span>)</span><br><span class="line"></span><br><span class="line">    def __init__(<span class="title">self</span>, <span class="type">UserName</span>=<span class="type">None</span>, <span class="type">Password</span>=<span class="type">None</span>):</span><br><span class="line">        self.<span class="type">UserName</span> = <span class="type">UserName</span></span><br><span class="line">        self.<span class="type">Password</span> = <span class="type">Password</span></span></span><br></pre></td></tr></table></figure></p>
+<p>接下来定义Face表：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="title">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="title">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line"><span class="title">from</span> flask.ext.sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="title">from</span> restapi <span class="keyword">import</span> app</span><br><span class="line"><span class="title">from</span> restapi.models.dbModel <span class="keyword">import</span> *</span><br><span class="line"><span class="title">from</span> restapi.models.<span class="type">UsersModel</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="title">from</span> restapi.bussiness.<span class="type">UtilsBl</span> <span class="keyword">import</span> DumpToDict</span><br><span class="line"><span class="keyword">import</span> json</span><br></pre></td></tr></table></figure></p>
+<p>#vip用户的model<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">PlatUserFace</span>(<span class="title">db</span>.<span class="type">Model</span>, <span class="type">DumpToDict</span>):</span><br><span class="line">    #表名</span><br><span class="line">    __tablename__ = '<span class="type">Plat_User_Face'</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">Id</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">Integer</span>, <span class="title">primary_key</span>=<span class="type">True</span>)</span><br><span class="line">    <span class="type">FaceUrl</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">String(50)</span>)</span><br><span class="line">    <span class="type">FaceName</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">String(50)</span>)</span><br><span class="line">    <span class="type">WriteTime</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">DateTime</span>, <span class="title">onupdate</span>=<span class="title">datetime</span>.<span class="title">now</span>, <span class="title">default</span>=<span class="title">datetime</span>.<span class="title">now</span>)</span><br><span class="line">    <span class="type">UserId</span> = db.<span class="type">Column</span>(<span class="title">db</span>.<span class="type">Integer</span>, <span class="title">db</span>.<span class="type">ForeignKey</span>('<span class="type">Plat_User</span>.<span class="type">Id</span>'), nullable=<span class="type">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def __init__(<span class="title">self</span>, <span class="type">UserId</span>=<span class="type">None</span>, <span class="type">FaceUrl</span>=<span class="type">None</span>, <span class="type">FaceName</span>=<span class="type">None</span>):</span><br><span class="line">        self.<span class="type">UserId</span> = <span class="type">UserId</span></span><br><span class="line">        self.<span class="type">FaceUrl</span> = <span class="type">FaceUrl</span></span><br><span class="line">        self.<span class="type">FaceName</span> = <span class="type">FaceName</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这样我们就将表 ‘Plat_User’ 和表 ‘Plat_User_Face’ 进行了一对多的关系映射<br>注意这边有一个小坑，在定义 Plat_user 表 Faces 时<br>Faces = db.relationship(‘PlatUserFace’, backref=’Plat_User’, lazy=’select’)</p>
+<p>#这边 PlatUserFace 一定要写类名，写表名会报错！！！</p>
+<p>3、关于 lazy 的设置<br>lazy设置表示这个属性等到用户使用到才去加载，在我们打开 SQLAlchemy 的调试加断点后，可以清晰的看到，第一次查询和第二次查询的语句，lazy也有几种不通设置，如下：</p>
+<p>（1）’select’ （默认值）意味着 SQLAlchemy 会在使用一个标准 select 语句 时一气呵成加载那些数据<br>（2）’joined’ 让 SQLAlchemy 当父级使用 JOIN 语句是，在相同的查询中加 载关系。<br>（3）’subquery’ 类似 ‘joined’ ，但是 SQLAlchemy 会使用子查询。<br>（4）’dynamic’ 在你有可能条目时是特别有用的。 SQLAlchemy 会返回另一个查 询对象，你可以在加载这些条目时进一步提取。如果不仅想要关系下的少量条目 时，这通常是你想要的。</p>
+<p>这里主要说明一下 dynamic 这个设置，这个设置会在查询返回的结果中保留此字段为一个查询实例，可以用如下代码说明：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取用户信息</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sqlData</span> = PlatUser.query.options(lazyload(PlatUser.Faces)).filter_by(Id=user.Id).all()</span><br><span class="line"></span><br><span class="line"><span class="comment">#这里需要.all() 才能手动的去获取此用户Face的列表</span></span><br><span class="line"></span><br><span class="line"><span class="attr">FaceList</span> = sqlData.Faces.all()</span><br></pre></td></tr></table></figure></p>
+<p>当然一般使用 select 就足够了</p>
+<p>4、deferred列定义<br>有些字段内容比较多而且不经常使用，比如是一个新闻的内容字段，在列表页或者封面页我们完全不必读取这个大的字段到内存里，这时候我们就可以设定这个列为 deferred，如下：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UserTips = <span class="keyword">db</span>.deferred(<span class="keyword">db</span>.Column(<span class="keyword">db</span>.Text))</span><br></pre></td></tr></table></figure></p>
+<p>通常在查询时会不包括这个字段，当然我们也可以手动指定某一个字段不加载，例如：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user.sqlData = PlatUser<span class="string">\</span></span><br><span class="line">            .query<span class="string">\</span></span><br><span class="line">            .options(defer(<span class="string">'Password'</span>))<span class="string">\</span></span><br><span class="line">            .filter_by(Id=self.userId).first()</span><br></pre></td></tr></table></figure></p>
+<p>如果想要一次性加载 UserTips 这个字段，则：<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user.sqlData = PlatUser<span class="string">\</span></span><br><span class="line">            .query<span class="string">\</span></span><br><span class="line">            .options(undefer(<span class="string">'UserTips'</span>))<span class="string">\</span></span><br><span class="line">            .filter_by(Id=self.userId).first()</span><br></pre></td></tr></table></figure></p>
+<p>5、多对多的定义：<br>有这样的需求，用户表和兴趣表，一个用户可以拥有多个兴趣爱好，同时一个兴趣爱好，也能被多个用户拥有，这里还需要支持反向查找的功能，不仅可以通过用户的userid查找到他的兴趣爱好，还可以通过一个兴趣爱好，查找那些有这些兴趣爱好的人<br>Model我们这样定义：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#vip用户的model</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlatUser</span><span class="params">(db.Model, DumpToDict)</span>:</span></span><br><span class="line">    <span class="comment">#表名</span></span><br><span class="line">    __tablename__ = <span class="string">'Plat_User'</span></span><br><span class="line">    </span><br><span class="line">    Id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    UserName = db.Column(db.String(<span class="number">50</span>))</span><br><span class="line">    Password = db.Column(db.String(<span class="number">50</span>))</span><br><span class="line">    UserTips = db.deferred(db.Column(db.Text))</span><br><span class="line">    WriteTime = db.Column(db.DateTime, onupdate=datetime.now, default=datetime.now)</span><br><span class="line">    Faces = db.relationship(<span class="string">'PlatUserFace'</span>, backref=<span class="string">'Plat_User'</span>, lazy=<span class="string">'select'</span>)</span><br><span class="line">    Hobbies = db.relationship(<span class="string">'PlatUserHobby'</span>, secondary=<span class="string">'Plat_User_Hobby_Relation'</span>,</span><br><span class="line">        backref=db.backref(<span class="string">'Plat_User'</span>, lazy=<span class="string">'select'</span>), lazy=<span class="string">'select'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, UserName=None, Password=None)</span>:</span></span><br><span class="line">        self.UserName = UserName</span><br><span class="line">        self.Password = Password</span><br><span class="line"></span><br><span class="line"><span class="comment">#关联表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserHobby</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'Plat_User_Hobby_Relation'</span></span><br><span class="line"></span><br><span class="line">    Id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    UserId = db.Column(db.Integer, db.ForeignKey(<span class="string">'Plat_User.Id'</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line">    HobbyId = db.Column(db.Integer, db.ForeignKey(<span class="string">'Plat_User_Hobby.Id'</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line">    db.UniqueConstraint(<span class="string">'UserId'</span>, <span class="string">'HobbyId'</span>, name=<span class="string">'unique_1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, UserId, HobbyId)</span>:</span></span><br><span class="line">        self.UserId = UserId</span><br><span class="line">        self.HobbyId = HobbyId</span><br></pre></td></tr></table></figure></p>
+<p>对于兴趣表，我们根本无需特别的定义，因为在user表我们已经定义了 backref<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户兴趣爱好model</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlatUserHobby</span><span class="params">(db.Model, DumpToDict)</span>:</span></span><br><span class="line">    <span class="comment">#表名</span></span><br><span class="line">    __tablename__ = <span class="string">'Plat_User_Hobby'</span></span><br><span class="line">    </span><br><span class="line">    Id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    HobbyName = db.Column(db.String(<span class="number">50</span>))</span><br><span class="line">    WriteTime = db.Column(db.DateTime, onupdate=datetime.now, default=datetime.now)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, UserId=None, HobbyName=None)</span>:</span></span><br><span class="line">        self.UserId = UserId</span><br><span class="line">        self.HobbyName = HobbyName</span><br></pre></td></tr></table></figure></p>
+<p>在使用时，和一对多一样，只需要访问User类的Hobbies属性即可<br>对于反向查找，只需要如下代码：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userHobby<span class="selector-class">.sqlData</span> = PlatUserHobby<span class="selector-class">.query</span><span class="selector-class">.filter_by</span>(Id=hobbyId).first()</span><br><span class="line">userList = userHobby<span class="selector-class">.sqlData</span><span class="selector-class">.Plat_User</span></span><br></pre></td></tr></table></figure></p>
+<p>#注意最后.Plat_User即可获得平台用户拥有这个属性的列表</p>
+<p>6、连接字符串中密码包含 ‘@’ 等冲突字符处理<br>在sqlalchemy中，如果连接字符串包含 @ 等特殊字符，直接放在连接字符串中是无法连接到数据库的，可以通过如下的方式转义之后再连接<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> quote_plus <span class="keyword">as</span> urlquote</span><br><span class="line"><span class="string">'mysql://用户名:&#123;0&#125;@ip地址/数据库名'</span>.format(urlquote(<span class="string">'坏密码'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>7、如果确定创建表的顺序<br>有时候我们回复发现定义好的表怎么也创建不了，报错说XX表没有找到。<br>这可能存在多个表互相关联的情况，这时候我们必须先创建表B，才能创建表A和C，保证他们创建顺序的方法很简单：<br>优先 import B，然后再import A, C ，这样就可以保证表B先create table，然后再create A, C了</p>
+<p>持续更新</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/01/17/python脚本中的-usr-bin-python/">
+        python脚本中的 /usr/bin/python →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/03/08/Flask-SQLAlchemy-使用小坑/" data-title="Flask-SQLAlchemy-使用小坑" data-url="http://yoursite.com/2016/03/08/Flask-SQLAlchemy-使用小坑/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 钟蔚蔚. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>

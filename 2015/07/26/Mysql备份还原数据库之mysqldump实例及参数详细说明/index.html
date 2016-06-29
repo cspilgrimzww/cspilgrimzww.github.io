@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Mysql备份还原数据库之mysqldump实例及参数详细说明 | Weiwei Zhong&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Weiwei Zhong's blog">
+    <meta name="author" content="钟蔚蔚">
+    <meta name="description" content="Tyrion" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Weiwei Zhong&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_BLANK" class="animsition-link">node</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.liqilei.com/" class="animsition-link">Qilei Li</a></li>
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://pangjiuzala.github.io/" class="animsition-link">Xing Liu</a></li>
+                    
+                    <li><a href="http://www.changhuiyuan.com/" class="animsition-link">Huiyuan Chang</a></li>
+                    
+                    <li><a href="http://www.jianshu.com/users/2e5186b9dd1c/latest_articles" class="animsition-link">Ke Xu</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/profile.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Weiwei Zhong's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-07-25T17:06:40.000Z" itemprop="datePublished">
+          2015-07-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/Mysql/'>Mysql</a>
+    
+    
+</span>
+                <h1>Mysql备份还原数据库之mysqldump实例及参数详细说明</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>我们在运营项目的过程中肯定会遇到备份数据库，还原数据库的情况，我们一般用一下两种方式来处理：</p>
+<p><strong>1.使用into outfile 和 load data infile导入导出备份数据</strong></p>
+<p>这种方法的好处是，导出的数据可以自己规定格式，并且导出的是纯数据，不存在建表信息，你可以直接导入另外一个同数据库的不同表中，相对于mysqldump比较灵活机动。</p>
+<p>我们来看下面的例子：</p>
+<p>（1）下面的mysql命令是把select的mytable表中的数据导出到/home/db_bak2012文件。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> mytable <span class="keyword">where</span> <span class="keyword">status</span>!=<span class="number">0</span> <span class="keyword">and</span> <span class="keyword">name</span>!=<span class="string">''</span> <span class="keyword">into</span> <span class="keyword">outfile</span> <span class="string">'/home/db_bak2012'</span></span><br><span class="line"><span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'|'</span> <span class="keyword">enclosed</span> <span class="keyword">by</span> <span class="string">'"'</span> <span class="keyword">lines</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'\r\n'</span> ;</span><br></pre></td></tr></table></figure></p>
+<p>导入刚才备份的数据，可以使用load file方法，下面的mysql命令，把导出的数据导入了mytable_bak的表中：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">load</span> <span class="keyword">data</span> <span class="keyword">infile</span> <span class="string">'/home/db_bak2012'</span> <span class="keyword">into</span> <span class="keyword">table</span> mytable_bak</span><br><span class="line"><span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'|'</span> <span class="keyword">enclosed</span> <span class="keyword">by</span> <span class="string">'"'</span> <span class="keyword">lines</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'\r\n'</span> ;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.使用mysqldump导出固定条件的数据库</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我们来看几个常用用例：</span><br><span class="line">（1）导出整个数据库</span><br></pre></td></tr></table></figure></p>
+<p>mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名<br>mysqldump -u wcnc -p smgp_apps_wcnc &gt; wcnc.sql<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（2）导出一个表</span><br></pre></td></tr></table></figure></p>
+<p>mysqldump -u 用户名 -p 数据库名 表名&gt; 导出的文件名<br>mysqldump -u wcnc -p smgp_apps_wcnc users&gt; wcnc_users.sql<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（3）导出一个数据库结构</span><br></pre></td></tr></table></figure></p>
+<p>mysqldump -u wcnc -p -d –add-drop-table smgp_apps_wcnc &gt;d:\wcnc_db.sql</p>
+<p>#-d 不导出数据只导出结构 –add-drop-table 在每个create语句之前增加一个drop table<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（4）导入数据库，常用source 命令</span><br></pre></td></tr></table></figure></p>
+<p>#进入mysql数据库控制台，<br>mysql -u root -p<br>mysql&gt;use 数据库<br>mysql&gt;set names utf8; （先确认编码，如果不设置可能会出现乱码，注意不是UTF-8） </p>
+<p>#然后使用source命令，后面参数为脚本文件（如这里用到的.sql）<br>mysql&gt;source d:\wcnc_db.sql<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上边的实例只是最基础的，有的时候我们可能需要批量导出多个库，我们就可以加上<span class="comment">--databases 或者-B，如下语句：</span></span><br></pre></td></tr></table></figure></p>
+<p>mysqldump  -uroot -p –databases test mysql #空格分隔<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">还有的时候我们可能需要把数据库内所有的库全部备份，我们就可以使用-<span class="keyword">all</span>-databases，如下语句：</span><br></pre></td></tr></table></figure></p>
+<p>mysqldump  -uroot -p -all-databases<br>```<br>可能我们还会有更多的需求，下面是我在网上找的感觉比较全的参数说明，贴出来供大家参考。</p>
+<p>参数说明</p>
+<p>–all-databases  , -A</p>
+<p>导出全部数据库。</p>
+<p>mysqldump  -uroot -p –all-databases</p>
+<p>–all-tablespaces  , -Y</p>
+<p>导出全部表空间。</p>
+<p>mysqldump  -uroot -p –all-databases –all-tablespaces</p>
+<p>–no-tablespaces  , -y</p>
+<p>不导出任何表空间信息。</p>
+<p>mysqldump  -uroot -p –all-databases –no-tablespaces</p>
+<p>–add-drop-database</p>
+<p>每个数据库创建之前添加drop数据库语句。</p>
+<p>mysqldump  -uroot -p –all-databases –add-drop-database</p>
+<p>–add-drop-table</p>
+<p>每个数据表创建之前添加drop数据表语句。(默认为打开状态，使用–skip-add-drop-table取消选项)</p>
+<p>mysqldump  -uroot -p –all-databases  (默认添加drop语句)</p>
+<p>mysqldump  -uroot -p –all-databases –skip-add-drop-table  (取消drop语句)</p>
+<p>–add-locks</p>
+<p>在每个表导出之前增加LOCK TABLES并且之后UNLOCK  TABLE。(默认为打开状态，使用–skip-add-locks取消选项)</p>
+<p>mysqldump  -uroot -p –all-databases  (默认添加LOCK语句)</p>
+<p>mysqldump  -uroot -p –all-databases –skip-add-locks   (取消LOCK语句)</p>
+<p>–allow-keywords</p>
+<p>允许创建是关键词的列名字。这由表名前缀于每个列名做到。</p>
+<p>mysqldump  -uroot -p –all-databases –allow-keywords</p>
+<p>–apply-slave-statements</p>
+<p>在’CHANGE MASTER’前添加’STOP SLAVE’，并且在导出的最后添加’START SLAVE’。</p>
+<p>mysqldump  -uroot -p –all-databases –apply-slave-statements</p>
+<p>–character-sets-dir</p>
+<p>字符集文件的目录</p>
+<p>mysqldump  -uroot -p –all-databases  –character-sets-dir=/usr/local/mysql/share/mysql/charsets</p>
+<p>–comments</p>
+<p>附加注释信息。默认为打开，可以用–skip-comments取消</p>
+<p>mysqldump  -uroot -p –all-databases  (默认记录注释)</p>
+<p>mysqldump  -uroot -p –all-databases –skip-comments   (取消注释)</p>
+<p>–compatible</p>
+<p>导出的数据将和其它数据库或旧版本的MySQL 相兼容。值可以为ansi、mysql323、mysql40、postgresql、oracle、mssql、db2、maxdb、no_key_options、no_tables_options、no_field_options等，</p>
+<p>要使用几个值，用逗号将它们隔开。它并不保证能完全兼容，而是尽量兼容。</p>
+<p>mysqldump  -uroot -p –all-databases –compatible=ansi</p>
+<p>–compact</p>
+<p>导出更少的输出信息(用于调试)。去掉注释和头尾等结构。可以使用选项：–skip-add-drop-table  –skip-add-locks –skip-comments –skip-disable-keys</p>
+<p>mysqldump  -uroot -p –all-databases –compact</p>
+<p>–complete-insert,  -c</p>
+<p>使用完整的insert语句(包含列名称)。这么做能提高插入效率，但是可能会受到max_allowed_packet参数的影响而导致插入失败。</p>
+<p>mysqldump  -uroot -p –all-databases –complete-insert</p>
+<p>–compress, -C</p>
+<p>在客户端和服务器之间启用压缩传递所有信息</p>
+<p>mysqldump  -uroot -p –all-databases –compress</p>
+<p>–create-options,  -a</p>
+<p>在CREATE TABLE语句中包括所有MySQL特性选项。(默认为打开状态)</p>
+<p>mysqldump  -uroot -p –all-databases</p>
+<p>–databases,  -B</p>
+<p>导出几个数据库。参数后面所有名字参量都被看作数据库名。</p>
+<p>mysqldump  -uroot -p –databases test mysql</p>
+<p>–debug</p>
+<p>输出debug信息，用于调试。默认值为：d:t:o,/tmp/mysqldump.trace</p>
+<p>mysqldump  -uroot -p –all-databases –debug</p>
+<p>mysqldump  -uroot -p –all-databases –debug=” d:t:o,/tmp/debug.trace”</p>
+<p>–debug-check</p>
+<p>检查内存和打开文件使用说明并退出。</p>
+<p>mysqldump  -uroot -p –all-databases –debug-check</p>
+<p>–debug-info</p>
+<p>输出调试信息并退出</p>
+<p>mysqldump  -uroot -p –all-databases –debug-info</p>
+<p>–default-character-set</p>
+<p>设置默认字符集，默认值为utf8</p>
+<p>mysqldump  -uroot -p –all-databases –default-character-set=latin1</p>
+<p>–delayed-insert</p>
+<p>采用延时插入方式（INSERT DELAYED）导出数据</p>
+<p>mysqldump  -uroot -p –all-databases –delayed-insert</p>
+<p>–delete-master-logs</p>
+<p>master备份后删除日志. 这个参数将自动激活–master-data。</p>
+<p>mysqldump  -uroot -p –all-databases –delete-master-logs</p>
+<p>–disable-keys</p>
+<p>对于每个表，用/<em>!40000 ALTER TABLE tbl_name DISABLE KEYS </em>/;和/<em>!40000 ALTER TABLE tbl_name ENABLE KEYS </em>/;语句引用INSERT语句。这样可以更快地导入dump出来的文件，因为它是在插入所有行后创建索引的。该选项只适合MyISAM表，默认为打开状态。</p>
+<p>mysqldump  -uroot -p –all-databases </p>
+<p>–dump-slave</p>
+<p>该选项将导致主的binlog位置和文件名追加到导出数据的文件中。设置为1时，将会以CHANGE MASTER命令输出到数据文件；设置为2时，在命令前增加说明信息。该选项将会打开–lock-all-tables，除非–single-transaction被指定。该选项会自动关闭–lock-tables选项。默认值为0。</p>
+<p>mysqldump  -uroot -p –all-databases –dump-slave=1</p>
+<p>mysqldump  -uroot -p –all-databases –dump-slave=2</p>
+<p>–events, -E</p>
+<p>导出事件。</p>
+<p>mysqldump  -uroot -p –all-databases –events</p>
+<p>–extended-insert,  -e</p>
+<p>使用具有多个VALUES列的INSERT语法。这样使导出文件更小，并加速导入时的速度。默认为打开状态，使用–skip-extended-insert取消选项。</p>
+<p>mysqldump  -uroot -p –all-databases</p>
+<p>mysqldump  -uroot -p –all-databases–skip-extended-insert   (取消选项)</p>
+<p>–fields-terminated-by</p>
+<p>导出文件中忽略给定字段。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>mysqldump  -uroot -p test test –tab=”/home/mysql” –fields-terminated-by=”#”</p>
+<p>–fields-enclosed-by</p>
+<p>输出文件中的各个字段用给定字符包裹。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>mysqldump  -uroot -p test test –tab=”/home/mysql” –fields-enclosed-by=”#”</p>
+<p>–fields-optionally-enclosed-by</p>
+<p>输出文件中的各个字段用给定字符选择性包裹。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>mysqldump  -uroot -p test test –tab=”/home/mysql”  –fields-enclosed-by=”#” –fields-optionally-enclosed-by  =”#”</p>
+<p>–fields-escaped-by</p>
+<p>输出文件中的各个字段忽略给定字符。与–tab选项一起使用，不能用于–databases和–all-databases选项</p>
+<p>mysqldump  -uroot -p mysql user –tab=”/home/mysql” –fields-escaped-by=”#”</p>
+<p>–flush-logs</p>
+<p>开始导出之前刷新日志。</p>
+<p>请注意：假如一次导出多个数据库(使用选项–databases或者–all-databases)，将会逐个数据库刷新日志。除使用–lock-all-tables或者–master-data外。在这种情况下，日志将会被刷新一次，相应的所以表同时被锁定。因此，如果打算同时导出和刷新日志应该使用–lock-all-tables 或者–master-data 和–flush-logs。</p>
+<p>mysqldump  -uroot -p –all-databases –flush-logs</p>
+<p>–flush-privileges</p>
+<p>在导出mysql数据库之后，发出一条FLUSH  PRIVILEGES 语句。为了正确恢复，该选项应该用于导出mysql数据库和依赖mysql数据库数据的任何时候。</p>
+<p>mysqldump  -uroot -p –all-databases –flush-privileges</p>
+<p>–force</p>
+<p>在导出过程中忽略出现的SQL错误。</p>
+<p>mysqldump  -uroot -p –all-databases –force</p>
+<p>–help</p>
+<p>显示帮助信息并退出。</p>
+<p>mysqldump  –help</p>
+<p>–hex-blob</p>
+<p>使用十六进制格式导出二进制字符串字段。如果有二进制数据就必须使用该选项。影响到的字段类型有BINARY、VARBINARY、BLOB。</p>
+<p>mysqldump  -uroot -p –all-databases –hex-blob</p>
+<p>–host, -h</p>
+<p>需要导出的主机信息</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases</p>
+<p>–ignore-table</p>
+<p>不导出指定表。指定忽略多个表时，需要重复多次，每次一个表。每个表必须同时指定数据库和表名。例如：–ignore-table=database.table1 –ignore-table=database.table2 ……</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –ignore-table=mysql.user</p>
+<p>–include-master-host-port</p>
+<p>在–dump-slave产生的’CHANGE  MASTER TO..’语句中增加’MASTER_HOST=<host>，MASTER_PORT=<port>‘  </port></host></p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –include-master-host-port</p>
+<p>–insert-ignore</p>
+<p>在插入行时使用INSERT IGNORE语句.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –insert-ignore</p>
+<p>–lines-terminated-by</p>
+<p>输出文件的每行用给定字符串划分。与–tab选项一起使用，不能用于–databases和–all-databases选项。</p>
+<p>mysqldump  -uroot -p –host=localhost test test –tab=”/tmp/mysql”  –lines-terminated-by=”##”</p>
+<p>–lock-all-tables,  -x</p>
+<p>提交请求锁定所有数据库中的所有表，以保证数据的一致性。这是一个全局读锁，并且自动关闭–single-transaction 和–lock-tables 选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –lock-all-tables</p>
+<p>–lock-tables,  -l</p>
+<p>开始导出前，锁定所有表。用READ  LOCAL锁定表以允许MyISAM表并行插入。对于支持事务的表例如InnoDB和BDB，–single-transaction是一个更好的选择，因为它根本不需要锁定表。</p>
+<p>请注意当导出多个数据库时，–lock-tables分别为每个数据库锁定表。因此，该选项不能保证导出文件中的表在数据库之间的逻辑一致性。不同数据库表的导出状态可以完全不同。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –lock-tables</p>
+<p>–log-error</p>
+<p>附加警告和错误信息到给定文件</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases  –log-error=/tmp/mysqldump_error_log.err</p>
+<p>–master-data</p>
+<p>该选项将binlog的位置和文件名追加到输出文件中。如果为1，将会输出CHANGE MASTER 命令；如果为2，输出的CHANGE  MASTER命令前添加注释信息。该选项将打开–lock-all-tables 选项，除非–single-transaction也被指定（在这种情况下，全局读锁在开始导出时获得很短的时间；其他内容参考下面的–single-transaction选项）。该选项自动关闭–lock-tables选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –master-data=1;</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –master-data=2;</p>
+<p>–max_allowed_packet</p>
+<p>服务器发送和接受的最大包长度。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –max_allowed_packet=10240</p>
+<p>–net_buffer_length</p>
+<p>TCP/IP和socket连接的缓存大小。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –net_buffer_length=1024</p>
+<p>–no-autocommit</p>
+<p>使用autocommit/commit 语句包裹表。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –no-autocommit</p>
+<p>–no-create-db,  -n</p>
+<p>只导出数据，而不添加CREATE DATABASE 语句。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –no-create-db</p>
+<p>–no-create-info,  -t</p>
+<p>只导出数据，而不添加CREATE TABLE 语句。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –no-create-info</p>
+<p>–no-data, -d</p>
+<p>不导出任何数据，只导出数据库表结构。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –no-data</p>
+<p>–no-set-names,  -N</p>
+<p>等同于–skip-set-charset</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –no-set-names</p>
+<p>–opt</p>
+<p>等同于–add-drop-table,  –add-locks, –create-options, –quick, –extended-insert, –lock-tables,  –set-charset, –disable-keys 该选项默认开启,  可以用–skip-opt禁用.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –opt</p>
+<p>–order-by-primary</p>
+<p>如果存在主键，或者第一个唯一键，对每个表的记录进行排序。在导出MyISAM表到InnoDB表时有效，但会使得导出工作花费很长时间。 </p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –order-by-primary</p>
+<p>–password, -p</p>
+<p>连接数据库密码</p>
+<p>–pipe(windows系统可用)</p>
+<p>使用命名管道连接mysql</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –pipe</p>
+<p>–port, -P</p>
+<p>连接数据库端口号</p>
+<p>–protocol</p>
+<p>使用的连接协议，包括：tcp, socket, pipe, memory.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –protocol=tcp</p>
+<p>–quick, -q</p>
+<p>不缓冲查询，直接导出到标准输出。默认为打开状态，使用–skip-quick取消该选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases </p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –skip-quick</p>
+<p>–quote-names,-Q</p>
+<p>使用（`）引起表和列名。默认为打开状态，使用–skip-quote-names取消该选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –skip-quote-names</p>
+<p>–replace</p>
+<p>使用REPLACE INTO 取代INSERT INTO.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –replace</p>
+<p>–result-file,  -r</p>
+<p>直接输出到指定文件中。该选项应该用在使用回车换行对（\r\n）换行的系统上（例如：DOS，Windows）。该选项确保只有一行被使用。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –result-file=/tmp/mysqldump_result_file.txt</p>
+<p>–routines, -R</p>
+<p>导出存储过程以及自定义函数。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –routines</p>
+<p>–set-charset</p>
+<p>添加’SET NAMES  default_character_set’到输出文件。默认为打开状态，使用–skip-set-charset关闭选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases </p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –skip-set-charset</p>
+<p>–single-transaction</p>
+<p>该选项在导出数据之前提交一个BEGIN SQL语句，BEGIN 不会阻塞任何应用程序且能保证导出时数据库的一致性状态。它只适用于多版本存储引擎，仅InnoDB。本选项和–lock-tables 选项是互斥的，因为LOCK  TABLES 会使任何挂起的事务隐含提交。要想导出大表的话，应结合使用–quick 选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –single-transaction</p>
+<p>–dump-date</p>
+<p>将导出时间添加到输出文件中。默认为打开状态，使用–skip-dump-date关闭选项。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –skip-dump-date</p>
+<p>–skip-opt</p>
+<p>禁用–opt选项.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –skip-opt</p>
+<p>–socket,-S</p>
+<p>指定连接mysql的socket文件位置，默认路径/tmp/mysql.sock</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –socket=/tmp/mysqld.sock</p>
+<p>–tab,-T</p>
+<p>为每个表在给定路径创建tab分割的文本文件。注意：仅仅用于mysqldump和mysqld服务器运行在相同机器上。</p>
+<p>mysqldump  -uroot -p –host=localhost test test –tab=”/home/mysql”</p>
+<p>–tables</p>
+<p>覆盖–databases (-B)参数，指定需要导出的表名。</p>
+<p>mysqldump  -uroot -p –host=localhost –databases test –tables test</p>
+<p>–triggers</p>
+<p>导出触发器。该选项默认启用，用–skip-triggers禁用它。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –triggers</p>
+<p>–tz-utc</p>
+<p>在导出顶部设置时区TIME_ZONE=’+00:00’ ，以保证在不同时区导出的TIMESTAMP 数据或者数据被移动其他时区时的正确性。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –tz-utc</p>
+<p>–user, -u</p>
+<p>指定连接的用户名。</p>
+<p>–verbose, –v</p>
+<p>输出多种平台信息。</p>
+<p>–version, -V</p>
+<p>输出mysqldump版本信息并退出</p>
+<p>–where, -w</p>
+<p>只转储给定的WHERE条件选择的记录。请注意如果条件包含命令解释符专用空格或字符，一定要将条件引用起来。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –where=” user=’root’”</p>
+<p>–xml, -X</p>
+<p>导出XML格式.</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –xml</p>
+<p>–plugin_dir</p>
+<p>客户端插件的目录，用于兼容不同的插件版本。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –plugin_dir=”/usr/local/lib/plugin”</p>
+<p>–default_auth</p>
+<p>客户端插件默认使用权限。</p>
+<p>mysqldump  -uroot -p –host=localhost –all-databases –default-auth=”/usr/local/lib/plugin/<plugin>”</plugin></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2015/08/05/阿里云部署-Flask-WSGI-Nginx-详解/" style="float: left;">
+        ← 阿里云部署 Flask + WSGI + Nginx 详解
+    </a>
+    
+    
+    <a class="pull-right" href="/2015/07/21/markdown简明语法/">
+        markdown简明语法 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/" data-title="Mysql备份还原数据库之mysqldump实例及参数详细说明" data-url="http://yoursite.com/2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 钟蔚蔚. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>

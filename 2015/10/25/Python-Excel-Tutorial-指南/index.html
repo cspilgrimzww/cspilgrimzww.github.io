@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Python Excel Tutorial 指南 | Weiwei Zhong&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Weiwei Zhong's blog">
+    <meta name="author" content="钟蔚蔚">
+    <meta name="description" content="Tyrion" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Weiwei Zhong&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_BLANK" class="animsition-link">node</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.liqilei.com/" class="animsition-link">Qilei Li</a></li>
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://pangjiuzala.github.io/" class="animsition-link">Xing Liu</a></li>
+                    
+                    <li><a href="http://www.changhuiyuan.com/" class="animsition-link">Huiyuan Chang</a></li>
+                    
+                    <li><a href="http://www.jianshu.com/users/2e5186b9dd1c/latest_articles" class="animsition-link">Ke Xu</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/profile.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Weiwei Zhong's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-10-24T17:53:28.000Z" itemprop="datePublished">
+          2015-10-25
+      </time>
+    
+    
+    | 
+    <a href='/tags/Python/'>Python</a>
+    
+    
+</span>
+                <h1>Python Excel Tutorial 指南</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>##安装</p>
+<p>有几种不同的安装方法。下面是以xlrd为例的，其它二个库都是使用同样的步骤。</p>
+<p><strong>从源码安装</strong></p>
+<p>Linux系统：<br>Python代码<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tar xzf xlrd<span class="selector-class">.tgz</span>  </span><br><span class="line">$ cd xlrd-<span class="number">0.7</span>.<span class="number">1</span>  </span><br><span class="line">$ python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure></p>
+<p>Windows系统：使用WinZip或类似工具解压xlrd-0.7.1.zip：<br>Python代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">C</span>:\&gt; <span class="selector-tag">cd</span> <span class="selector-tag">xlrd-0</span><span class="selector-class">.7</span><span class="selector-class">.1</span>  </span><br><span class="line"><span class="selector-tag">C</span>:\<span class="selector-tag">xlrd-0</span><span class="selector-class">.7</span><span class="selector-class">.1</span>&gt; \<span class="selector-tag">Python26</span>\<span class="selector-tag">python</span> <span class="selector-tag">setup</span><span class="selector-class">.py</span> <span class="selector-tag">install</span></span><br></pre></td></tr></table></figure></p>
+<p>注意：确保你想要在你的项目中使用python。</p>
+<p><strong>使用Windows Installer安装</strong></p>
+<p>Windows系统下，你可以下载运行xlrd-0.7.1.win32.exe安装。</p>
+<p>注意它只是以注册表形式安装到Python中。</p>
+<p><strong>使用EasyInstall安装</strong></p>
+<p>这种跨平台方法需要你已经安装了EasyInstall。更多信息请参考：</p>
+<p><a href="http://peak.telecommunity.com/DevCenter/EasyInstall" target="_blank" rel="external">http://peak.telecommunity.com/DevCenter/EasyInstall</a><br>Python代码<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">easy_install</span> xlrd</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用Buildout安装</strong></p>
+<p>Buildout在遇见python包时依靠一个没有涉及到Python系统的项目，提供一种跨平台的方法。</p>
+<p>创建一个目录mybuildout，在里面下载下面文件：</p>
+<p><a href="http://svn.zope.org/*checkout*/zc.buildout/trunk/bootstrap/bootstrap.py" target="_blank" rel="external">http://svn.zope.org/*checkout*/zc.buildout/trunk/bootstrap/bootstrap.py</a>   </p>
+<p>现在，在mybuilout目录中创建一个名为buildout.cfg的文件，内容如下：<br>Txt代码<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[buildout]  </span><br><span class="line">parts = py   </span><br><span class="line">versions = versions  </span><br><span class="line">[versions]  </span><br><span class="line">xlrd=0.7.1  </span><br><span class="line">xlwt=0.7.2  </span><br><span class="line">xlutils=1.3.2  </span><br><span class="line">[py]  </span><br><span class="line">recipe = zc.recipe.egg  </span><br><span class="line">eggs =   </span><br><span class="line">  xlrd   </span><br><span class="line">  xlwt   </span><br><span class="line">  xlutils  </span><br><span class="line">interpreter = py</span><br></pre></td></tr></table></figure></p>
+<p> 注意：这个版本部分是可选的。</p>
+<p>最后，运行下面：<br>Python代码<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>python bootstrap.py  </span><br><span class="line"><span class="variable">$ </span>bin/buildout</span><br></pre></td></tr></table></figure></p>
+<p>这两行：</p>
+<pre><code>初始化buildout环境
+运行buildout。 如果发生了变化这个命令每次都应该执行。
+</code></pre><p>Buildout主页在 <a href="http://pypi.python.org/pypi/zc.buildout" target="_blank" rel="external">http://pypi.python.org/pypi/zc.buildout</a></p>
+<p>##读取Excel文件</p>
+<p>下面展示的所有的例子都是基于xlrd目录的教程。</p>
+<p><strong>打开Workbooks</strong></p>
+<p>Workbooks能从一个文件、一个mmap.mmap对象或一个字符串加载：<br>Python代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mmap <span class="keyword">import</span> mmap,ACCESS_READ  </span><br><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> open_workbook(<span class="string">'simple.xls'</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'simple.xls'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:  </span><br><span class="line">    <span class="keyword">print</span> open_workbook(  </span><br><span class="line">        file_contents=mmap(f.fileno(),<span class="number">0</span>,acc  </span><br><span class="line">        )  </span><br><span class="line">  </span><br><span class="line">aString = open(<span class="string">'simple.xls'</span>,<span class="string">'rb'</span>).read()  </span><br><span class="line"><span class="keyword">print</span> open_workbook(file_contents=aString)</span><br></pre></td></tr></table></figure></p>
+<p>##操作Workbook </p>
+<p>这是一个简单操作workbook的例子：<br>Python代码<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from xlrd import open_workbook  </span><br><span class="line">  </span><br><span class="line">wb = open_workbook('simple.xls')  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> wb.sheets():  </span><br><span class="line">    <span class="built_in">print</span> 'Sheet:',s.name  </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">row</span> <span class="keyword">in</span> <span class="built_in">range</span>(s.nrows):  </span><br><span class="line">        <span class="built_in">values</span> = []  </span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">col</span> <span class="keyword">in</span> <span class="built_in">range</span>(s.ncols):  </span><br><span class="line">            <span class="built_in">values</span>.<span class="built_in">append</span>(s.cell(<span class="built_in">row</span>,<span class="built_in">col</span>).value)  </span><br><span class="line">        <span class="built_in">print</span> ','.<span class="built_in">join</span>(<span class="built_in">values</span>)  </span><br><span class="line">    <span class="built_in">print</span></span><br></pre></td></tr></table></figure></p>
+<p>下面几乎没有小节涉及到操作workbook的更多细节。</p>
+<p>##揭秘Book</p>
+<p>通过open_workbook返回的xlrd.Book对象包含了所有对工作簿要的事情，能被用于在工作簿中取得独立的sheet。</p>
+<p>这个nsheets属性是一个整数，包含工作簿sheet的数量。这个属性与sheet_by_index方法结合起来是获取独立sheet最常用的方法。</p>
+<p>sheet_names方法返回包含工作簿中所有sheet名字的unicode列表。单独的sheet可以通过sheet_by_name方法使用这些名字获取。</p>
+<p>sheets方法的结果是迭代获取工作簿中的每个sheet。</p>
+<p>下面是这些方法和属性的例子示范：<br>Python代码<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'simple.xls'</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span> book.nsheets  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> sheet_index <span class="keyword">in</span> range(book.nsheets):  </span><br><span class="line">    <span class="built_in">print</span> book.sheet_by_index(sheet_index)  </span><br><span class="line">      </span><br><span class="line"><span class="built_in">print</span> book.sheet_names()  </span><br><span class="line"><span class="keyword">for</span> sheet_name <span class="keyword">in</span> book.sheet_names():  </span><br><span class="line">    <span class="built_in">print</span> book.sheet_by_name(sheet_name)  </span><br><span class="line">      </span><br><span class="line"><span class="keyword">for</span> sheet <span class="keyword">in</span> book.sheets():  </span><br><span class="line">    <span class="built_in">print</span> sheet</span><br></pre></td></tr></table></figure></p>
+<p> xlrd.Book对象有与工作簿内容相关的其它属性，但很少用到：</p>
+<p>-codepage<br>-countries<br>-user_name</p>
+<p>如果你可能需要运用这些属性，请查看xlrd文档。</p>
+<p><strong>揭秘Sheet</strong></p>
+<p>通过上面介绍的方法返回的xlrd.sheet.Sheet对象包含了所有对worksheet和它的内容操作的信息。</p>
+<p>name属性是worksheet名字的unicode表示。</p>
+<p>nrows和ncols属性分别包含了worksheet中的行数和列数。</p>
+<p>下面例子展示了如何使用迭代来显示一个worksheet的内容：<br>Python代码<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook,cellname  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'odd.xls'</span>)  </span><br><span class="line">sheet = book.sheet_by_index(<span class="number">0</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span> sheet.name  </span><br><span class="line">  </span><br><span class="line"><span class="built_in">print</span> sheet.nrows  </span><br><span class="line"><span class="built_in">print</span> sheet.ncols  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> row_index <span class="keyword">in</span> range(sheet.nrows):  </span><br><span class="line">    <span class="keyword">for</span> col_index <span class="keyword">in</span> range(sheet.ncols):  </span><br><span class="line">        <span class="built_in">print</span> cellname(row_index,col_index),<span class="string">'-'</span>,  </span><br><span class="line">        <span class="built_in">print</span> sheet.cell(row_index,col_index).value</span><br></pre></td></tr></table></figure></p>
+<p> xlrd.sheet.Sheet对象有其他一些与worksheet内容相关的属性，但很少使用：</p>
+<p>-col_label_ranges<br>-row_label_ranges<br>-visibility</p>
+<p>如果你认为你可能需要运用这些属性，请参看xlrd文档。</p>
+<p>##获得特定的单元格</p>
+<p>正如你在前面例子中看到的，Sheet对象的cell方法能用来返回特定单元格的内容。</p>
+<p>cell方法返回一个xlrd.sheet.Cell对象。除了value包含了单元格的真实值，ctype包含了单元格的类型，Cell对象几乎没有其他属性。</p>
+<p>另外，Sheet对象有两个方法返回这两种数据类型。cell_value方法返回特定单元格的值，而cell_type方法返回特定单元格的类型。这两个方法执行时比获取Cell对象更快。</p>
+<p>后面会讲述更多Cell类型的细节。下面示范了这些方法，属性和起作用的类：<br>Python代码<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">from</span> xlrd <span class="keyword">import</span> open_workbook,XL_CELL_TEXT  </span><br><span class="line">  </span><br><span class="line"><span class="title">book</span> = open_workbook('odd.xls')  </span><br><span class="line"><span class="title">sheet</span> = book.sheet_by_index(<span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="title">cell</span> = sheet.cell(<span class="number">0</span>,<span class="number">0</span>)  </span><br><span class="line"><span class="title">print</span> cell  </span><br><span class="line"><span class="title">print</span> cell.value  </span><br><span class="line"><span class="title">print</span> cell.c<span class="keyword">type</span>==<span class="type">XL_CELL_TEXT</span>  </span><br><span class="line">  </span><br><span class="line"><span class="title">for</span> i <span class="keyword">in</span> range(sheet.ncols):  </span><br><span class="line">    print sheet.cell_<span class="keyword">type</span>(1,i),sheet.cell_value(1,i)</span><br></pre></td></tr></table></figure></p>
+<p>迭代Sheet的内容</p>
+<p>我们已经见过怎么迭代worksheet的内容，获取产生的单独的单元格。然而，有更容易的方法来获取单元格组。有一套对称的方法来通过行或列获取单元格组的信息。</p>
+<p>row和col方法分别返回一整行（列）的Cell对象。</p>
+<p>row_slice和col_slice方法分别返回一行（列）中以开始索引和一个可选的结束索引为边界的Cell对象列表。</p>
+<p>row_types和col_types方法分别返回一行（列）中以开始索引和一个可选的结束索引为边界的表示单元格类型的整数列表。</p>
+<p>row_values和col_values方法分别返回一行（列）中以开始索引和一个可选的结束索引为边界的表示单元格值的对象列表。</p>
+<p>下面是所有sheet迭代方法的示例：<br>Python代码<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'odd.xls'</span>)  </span><br><span class="line">sheet0 = book.sheet_by_index(<span class="number">0</span>)  </span><br><span class="line">sheet1 = book.sheet_by_index(<span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> sheet0.row(<span class="number">0</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.col(<span class="number">0</span>)  </span><br><span class="line"><span class="keyword">print</span>  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_slice(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_slice(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_values(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_values(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_types(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.row_types(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span>  </span><br><span class="line"><span class="keyword">print</span> sheet1.col_slice(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.col_slice(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet1.col_values(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.col_values(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet1.col_types(<span class="number">0</span>,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> sheet0.col_types(<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>实用方法</p>
+<p>当围绕workbook进行操作的时候，把行和列转换成用户习惯看到的Excel单元格引用（如：(0,0)转换成A1），这是很有用的。下面提供的方法帮助我们实现它：</p>
+<p>cellname方法把一对行和列索引转换为一个对应的Excel单元格引用。</p>
+<p>cellnameabs方法把一对行和列索引转换为一个绝对的Excel单元格引用（如：$A$1）。</p>
+<p>colname方法把一个列索引转换为Excel列名。</p>
+<p>下面是这三个方法的示例：<br>Python代码<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> cellname, cellnameabs, colname  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> cellname(<span class="number">0</span>,<span class="number">0</span>),cellname(<span class="number">10</span>,<span class="number">10</span>),cellname(<span class="number">100</span>,<span class="number">100</span>)  </span><br><span class="line"><span class="keyword">print</span> cellnameabs(<span class="number">3</span>,<span class="number">1</span>),cellnameabs(<span class="number">41</span>,<span class="number">59</span>),cellnameabs(<span class="number">265</span>,<span class="number">358</span>)  </span><br><span class="line"><span class="keyword">print</span> colname(<span class="number">0</span>),colname(<span class="number">10</span>),colname(<span class="number">100</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Unicode</strong></p>
+<p>由xlrd产生的所有文本属性不是unidecode对象，就是ascii字符串（很少）。</p>
+<p>由Microsoft Excel输入的每个文本都是下列编码之一：<br>-Latin1,如果匹配<br>-UTF_16_LE，如果不匹配Latin1<br>-在更老的文件中，是按MS字符集规范编码的。他们由xlrd映射到Python编码，结果仍是unicode对象。</p>
+<p>其他知名软件用错误字符集或不用字符集写入Excel文件的情况是很少的。这种情况下，可能需要在open_workbook方法中指定正确的字符集。<br>Python代码<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">book = open_workbook(<span class="string">'dodgy.xls'</span>,encoding=<span class="string">'cp1252'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>单元格的类型</strong></p>
+<p>我们已经看过单元格类型用一个整数表示。这个整数相当于xlrd识别单元格类型的一组常数。可能的单元格类型在下面部分全部被列出来了。</p>
+<p><strong>Text 文本</strong></p>
+<p>这是由xlrd.XL_CELL_TEXT常数表示的。<br>这种类型的单元格的值是unicode对象。</p>
+<p><strong>Number 数字</strong></p>
+<p>这是由xlrd.XL_CELL_NUMBER常数表示的。<br>这种类型的单元格的值是float对象。</p>
+<p><strong>Date 日期</strong></p>
+<p>这是由xlrd.XL_CELL_DATE常数表示的。</p>
+<p>注意：日期在Excel文件中实际上是不存在的，它们只不过是特别格式化后的数字。</p>
+<p>如果数字格式字符串看起来像日期，xlrd将会返回xlrd.XL_CELL_DATE作为单元格类型。</p>
+<p>提供的xldate_as_tuple方法把日期单元格中的float数转化为适合实例化各种日期或时间对象的元组。这个例子展示了怎么使用它：<br>Python代码<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from datetime import date,datetime,<span class="selector-tag">time</span>  </span><br><span class="line">from xlrd import open_workbook,xldate_as_tuple  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'types.xls'</span>)  </span><br><span class="line">sheet = book.sheet_by_index(<span class="number">0</span>)  </span><br><span class="line">  </span><br><span class="line">date_value =  </span><br><span class="line"><span class="function"><span class="title">xldate_as_tuple</span><span class="params">(sheet.cell(<span class="number">3</span>,<span class="number">2</span>)</span></span><span class="selector-class">.value</span>,book.datemode)  </span><br><span class="line">print datetime(*date_value),date(*date_value[:<span class="number">3</span>])  </span><br><span class="line">datetime_value =  </span><br><span class="line"><span class="function"><span class="title">xldate_as_tuple</span><span class="params">(sheet.cell(<span class="number">3</span>,<span class="number">3</span>)</span></span><span class="selector-class">.value</span>,book.datemode)  </span><br><span class="line">print datetime(*datetime_value)  </span><br><span class="line">time_value =  </span><br><span class="line"><span class="function"><span class="title">xldate_as_tuple</span><span class="params">(sheet.cell(<span class="number">3</span>,<span class="number">4</span>)</span></span><span class="selector-class">.value</span>,book.datemode)  </span><br><span class="line">print time(*time_value[<span class="number">3</span>:])  </span><br><span class="line">print datetime(*time_value)</span><br></pre></td></tr></table></figure></p>
+<p> 说明：<br>-Excel文件有两种可能的日期模式，一种用于最初由Windows创建的文件，一种用于最初由苹果电脑创建的文件。这个日期模式被表示成xlrd.Book对象的datemode属性，且必须传值给xldate_as_tuple方法。<br>-Excel文件格式对1904年一月3日以前的日期有各种问题，引起日期混乱，从而抛出XLDateError错误。<br>-Excel公式方法DATE()在某些情况下会返回出乎意料的日期。</p>
+<p><strong>Boolean 布尔值</strong></p>
+<p>这是由xlrd.XL_CELL_BOOLEAN常数表示的。<br>这种单元格的值是bool对象。</p>
+<p><strong>Error 错误</strong></p>
+<p>这是由xlrd.XL_CELL_ERROR常数表示的。<br>这种单元格的值是表示特定错误代码的整数。<br>error_text_from_code方法用来把错误代码转换为错误信息：<br>Python代码<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from xlrd <span class="keyword">import</span> open<span class="number">_</span>workbook,error<span class="number">_</span>text<span class="number">_f</span>rom<span class="number">_</span>code  </span><br><span class="line">  </span><br><span class="line">book = open<span class="number">_</span>workbook(<span class="string">'types.xls'</span>)  </span><br><span class="line">sheet = book.sheet<span class="number">_</span><span class="meta">by</span><span class="number">_</span>index(<span class="number">0</span>)  </span><br><span class="line">  </span><br><span class="line">print error<span class="number">_</span>text<span class="number">_f</span>rom<span class="number">_</span>code[sheet.cell(<span class="number">5</span>,<span class="number">2</span>).<span class="keyword">value</span>]  </span><br><span class="line">print error<span class="number">_</span>text<span class="number">_f</span>rom<span class="number">_</span>code[sheet.cell(<span class="number">5</span>,<span class="number">3</span>).<span class="keyword">value</span>]</span><br></pre></td></tr></table></figure></p>
+<p> 对一种明显显示所有单元格类型的简单方法，参看xlutils.display。</p>
+<p><strong>Empty/Blank 空值或空白</strong></p>
+<p>Excel只是在单元格中存储信息，或者对单元格格式化。而xlrd是作为单元格的矩形网格表示。</p>
+<p>Excel文件中没有任何信息的单元格由xlrd.XL_CELL_EMPTY常数表示。另外，只要有一个空值，用于xlrd后整个值是空串，所以空值单元格应该使用一种Python标识检查。</p>
+<p>Excel文件中只有格式信息的单元格由xlrd.XL_CELL_BLANK常数表示，它的值总是一个空字符串。<br>Python代码<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from xlrd import open_workbook,empty_cell  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> empty_cell.value  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'types.xls'</span>)  </span><br><span class="line">sheet = book.sheet_by_index(<span class="number">0</span>)  </span><br><span class="line"><span class="built_in">empty</span> = sheet.cell(<span class="number">6</span>,<span class="number">2</span>)  </span><br><span class="line">blank = sheet.cell(<span class="number">7</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="built_in">empty</span> <span class="keyword">is</span> blank, <span class="built_in">empty</span> <span class="keyword">is</span> empty_cell, blank <span class="keyword">is</span> empty_cell  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'types.xls'</span>,formatting_info=True)  </span><br><span class="line">sheet = book.sheet_by_index(<span class="number">0</span>)  </span><br><span class="line"><span class="built_in">empty</span> = sheet.cell(<span class="number">6</span>,<span class="number">2</span>)  </span><br><span class="line">blank = sheet.cell(<span class="number">7</span>,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="built_in">empty</span>.ctype,repr(<span class="built_in">empty</span>.value)  </span><br><span class="line"><span class="keyword">print</span> blank.ctype,repr(blank.value)</span><br></pre></td></tr></table></figure></p>
+<p>下面例子展示了以上所有单元格类型一起的使用：<br>Python代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cell_contents</span><span class="params">(sheet,row_x)</span>:</span>  </span><br><span class="line">result = []  </span><br><span class="line"><span class="keyword">for</span> col_x <span class="keyword">in</span> range(<span class="number">2</span>,sheet.ncols):  </span><br><span class="line">cell = sheet.cell(row_x,col_x)  </span><br><span class="line">result.append((cell.ctype,cell,cell.value))  </span><br><span class="line"><span class="keyword">return</span> result  </span><br><span class="line">  </span><br><span class="line">sheet = open_workbook(<span class="string">'types.xls'</span>).sheet_by_index(<span class="number">0</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_TEXT'</span>,cell_contents(sheet,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_NUMBER'</span>,cell_contents(sheet,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_DATE'</span>,cell_contents(sheet,<span class="number">3</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_BOOLEAN'</span>,cell_contents(sheet,<span class="number">4</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_ERROR'</span>,cell_contents(sheet,<span class="number">5</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_BLANK'</span>,cell_contents(sheet,<span class="number">6</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_EMPTY'</span>,cell_contents(sheet,<span class="number">7</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span>  </span><br><span class="line">sheet = open_workbook(  </span><br><span class="line"><span class="string">'types.xls'</span>,formatting_info=<span class="keyword">True</span>  </span><br><span class="line">).sheet_by_index(<span class="number">0</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_TEXT'</span>,cell_contents(sheet,<span class="number">1</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_NUMBER'</span>,cell_contents(sheet,<span class="number">2</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_DATE'</span>,cell_contents(sheet,<span class="number">3</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_BOOLEAN'</span>,cell_contents(sheet,<span class="number">4</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_ERROR'</span>,cell_contents(sheet,<span class="number">5</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_BLANK'</span>,cell_contents(sheet,<span class="number">6</span>)  </span><br><span class="line"><span class="keyword">print</span> <span class="string">'XL_CELL_EMPTY'</span>,cell_contents(sheet,<span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Names</strong></p>
+<p>这些是很少使用但很强大的抽象方法，常用于查找Excel文件的内部信息。</p>
+<p>它们有很多用途，xlrd能从它们之中获取信息。一个值得注意的例外是与sheet和宏命令相关的信息将会被忽略。</p>
+<p>Names在Excel中是通过Insert &gt; Name &gt; Define操作创建的。如果你想使用xlrd来从Names中获取信息，在你选择的电子表格应用程序中精通names的定义和运用是一个不错的想法。</p>
+<p><strong>Types 类型</strong></p>
+<p>一个Name可以涉及到：</p>
+<p><code>一个常数</code></p>
+<p>CurrentInterestRate = 0.015<br>NameOfPHB = “Attila T. Hun”</p>
+<p><code>一个单元格的绝对引用</code></p>
+<p>CurrentInterestRate = Sheet1!$B$4</p>
+<p><code>一个单元格的1D，2D或3D块的绝对引用</code></p>
+<p>MonthlySalesByRegion = Sheet2:Sheet5!$A$2:$M$100</p>
+<p><code>一个绝对引用的列表</code></p>
+<p>Print_Titles = [row_header_ref, col_header_ref])</p>
+<p>常数可以被获取。</p>
+<p>绝对引用的坐标可以被获取，以便你稍后获取相关sheet的对应数据。</p>
+<p>相对引用只有当你很熟悉被作为起源使用的单元格时是有用的。Excel文件中包含函数调用在内的公式和多重引用并不是有用的，也太难而无法评估。</p>
+<p>xlrd中没有包含全部的计算引擎。</p>
+<p><strong>Scope 范围</strong></p>
+<p>一个Name的Score可以是全局的，或者它只针对特定的sheet。一个Name的标识符在不同Scope内可以被重用。但有多个相同标识符的Name，根据scope使用最合适的一个。一个好例子是内置名为Print_Area；每个worksheet都可能有它们中的一个。</p>
+<p>例：<br>name=rate, scope=Sheet1, formula=0.015<br>name=rate, scope=Sheet2, formula=0.023<br>name=rate, scope=global, formula=0.040</p>
+<p>一个单元格公式(1+rate)^20出现在Sheet1等价于1.015^20，出现在Sheet2等价于1.023^20，出现在其他Sheet等价于1.040^20。</p>
+<p><strong>惯例</strong></p>
+<p>使用names的一般原因包括：</p>
+<pre><code>一个workbook中可能多个地方出现的值设定文本名称。如：RATE = 0.015
+容易被错误复制的复杂公式设定文本名称。如：SALES_RESULTS = $A$10:$M$999
+</code></pre><p>这里有个真实世界的案例：向总部报告。一个公司的总部制作了一个模版workbook。每个部门复制一份并填充内容。所有被提供的日期范围都定义了Names。当这些文件传回时，一个脚本用于验证这个部门是否损坏了这个workbook，这个Names用于获取数据来做进一步处理。使用names可以将这些范围解耦和，不管是总部设计模版的用户还是往模版里填充内容的部门用户 从这个脚本都只知道这些范围的names，而不知道具体的范围值。</p>
+<p>在xlrd发布的examples目录中你会找到namesdemo.xls，有许多例子，大部分都是针对非苹果系统定义的names。也有个xlrdnamesAPIdemo.py文件展示了如何使用name查找字典，如何获取常数、引用和引用指向的数据。</p>
+<p><strong>格式化</strong></p>
+<p>我们已经看到open_workbook方法有个参数从Excel文件加载信息。当这步完成，所有格式化信息都是可获得的，但是它是怎么实现的细节不再本书的范围内。</p>
+<p>如果你想要复制格式化后的数据到一个新Excel文件中，参看xlutils.copy和xlutils.filter。</p>
+<p>如果你想要检测格式化信息，你需要参考下面类的属性：</p>
+<p><strong>xlrd.Book</strong></p>
+<p>colour_map         font_list                format_list        format_map<br>palette_record   style_name_map   xf_list</p>
+<p><strong>xlrd.sheet.Sheet</strong></p>
+<p>cell_xf_index       rowinfo_map        colinfo_map       computed_column_width<br>default_additional_space_above                              default_additional_space_below<br>default_row_height                                                  default_row_height_mismatch<br>default_row_hidden                                                 defcolwidth<br>gcw                                                                           merged_cells</p>
+<p>standard_width</p>
+<p><strong>xlrd.sheet.Cell</strong></p>
+<p>xf_index</p>
+<p><strong>Other Classes</strong></p>
+<p>另外，下面类是只用于表示格式化的信息：<br>xlrd.sheet.Rowinfo<br>xlrd.sheet.Colinfo<br>xlrd.formatting.Font<br>xlrd.formatting.Format<br>xlrd.formatting.XF<br>xlrd.formatting.XFAlignment<br>xlrd.formatting.XFBackground<br>xlrd.formatting.XFBorder<br>xlrd.formatting.XFProtection</p>
+<p>##操作大的Excel文件</p>
+<p>如果你在操作特别大的Excel文件，那么有两个你应该注意的xlrd特性：</p>
+<pre><code>open_workbook方法的on_demand参数为True，被访问时会导致只往内存里加载worksheet。
+xlrd.Book对象有一个unload_sheet方法能通过指定sheet索引或sheet名称从内存中卸载worksheet。
+</code></pre><p>下面的例子展示了一个大的workbook怎么去迭代被检查只匹配某一模式的sheet，并在内存中某个时间被卸载。<br>Python代码<br><figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from xlrd <span class="keyword">import</span> open_workbook  </span><br><span class="line">  </span><br><span class="line">book = open_workbook(<span class="string">'simple.xls'</span>,on_demand=True)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> <span class="keyword">name</span> <span class="built_in">in</span> book.sheet_names():  </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">name</span>.endswith(<span class="string">'2'</span>):  </span><br><span class="line">        sheet = book.sheet_by_name(<span class="keyword">name</span>)  </span><br><span class="line">        print sheet.cell_value(<span class="number">0</span>,<span class="number">0</span>)  </span><br><span class="line">        book.unload_sheet(<span class="keyword">name</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>用runxlrd.py揭秘Excel文件</strong></p>
+<p>xlrd源码发布包括runxlrd.py脚本，它是非常有用的，不用写单行Python就能揭秘Excel文件。</p>
+<p>推荐运行教材提供的各种命令操作Excel文件。</p>
+<p>下面是从runxlrd获得的一个预览，使用python runxlrd.py –help能得到：</p>
+<p>Python代码<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">runxlrd.py [options] command [input-<span class="built_in">file</span>-patterns]  </span><br><span class="line">  </span><br><span class="line">Commands:  </span><br><span class="line">  </span><br><span class="line"><span class="number">2</span>rows           Print <span class="keyword">the</span> <span class="built_in">contents</span> <span class="keyword">of</span> <span class="keyword">first</span> <span class="keyword">and</span> <span class="keyword">last</span> row <span class="keyword">in</span> each sheet  </span><br><span class="line"><span class="number">3</span>rows           Print <span class="keyword">the</span> <span class="built_in">contents</span> <span class="keyword">of</span> <span class="keyword">first</span>, <span class="keyword">second</span> <span class="keyword">and</span> <span class="keyword">last</span> row <span class="keyword">in</span> each sheet  </span><br><span class="line">bench           Same <span class="keyword">as</span> <span class="string">"show"</span>, <span class="keyword">but</span> doesn't print <span class="comment">-- for profiling  </span></span><br><span class="line">biff_count[<span class="number">1</span>]   Print a <span class="built_in">count</span> <span class="keyword">of</span> each type <span class="keyword">of</span> BIFF <span class="built_in">record</span> <span class="keyword">in</span> <span class="keyword">the</span> <span class="built_in">file</span>  </span><br><span class="line">biff_dump[<span class="number">1</span>]    Print a dump (char <span class="keyword">and</span> hex) <span class="keyword">of</span> <span class="keyword">the</span> BIFF records <span class="keyword">in</span> <span class="keyword">the</span> <span class="built_in">file</span>  </span><br><span class="line">fonts           hdr + print a dump <span class="keyword">of</span> all font objects  </span><br><span class="line">hdr             Mini-overview <span class="keyword">of</span> <span class="built_in">file</span> (no per-sheet information)  </span><br><span class="line">hotshot         Do a hotshot profile <span class="built_in">run</span> e.g. ... -f1 hotshot bench bigfile*.xls  </span><br><span class="line">labels          Dump <span class="keyword">of</span> sheet.col_label_ranges <span class="keyword">and</span> ...row... <span class="keyword">for</span> each sheet  </span><br><span class="line">name_dump       Dump <span class="keyword">of</span> each object <span class="keyword">in</span> book.name_obj_list  </span><br><span class="line">names           Print brief information <span class="keyword">for</span> each NAME <span class="built_in">record</span>  </span><br><span class="line">ov              Overview <span class="keyword">of</span> <span class="built_in">file</span>  </span><br><span class="line">profile         Like <span class="string">"hotshot"</span>, <span class="keyword">but</span> uses cProfile  </span><br><span class="line">show            Print <span class="keyword">the</span> <span class="built_in">contents</span> <span class="keyword">of</span> all rows <span class="keyword">in</span> each sheet  </span><br><span class="line"><span class="built_in">version</span>[<span class="number">0</span>]      Print versions <span class="keyword">of</span> xlrd <span class="keyword">and</span> Python <span class="keyword">and</span> <span class="keyword">exit</span>  </span><br><span class="line">xfc             Print <span class="string">"XF counts"</span> <span class="keyword">and</span> cell-type counts <span class="comment">-- see code for details  </span></span><br><span class="line">  </span><br><span class="line">[<span class="number">0</span>] means no <span class="built_in">file</span> arg  </span><br><span class="line">[<span class="number">1</span>] means only one <span class="built_in">file</span> arg i.e. no glob.glob pattern  </span><br><span class="line">  </span><br><span class="line">Options:  </span><br><span class="line">  -h, <span class="comment">--help            show this help message and exit  </span></span><br><span class="line">  -l LOGFILENAME, <span class="comment">--logfilename=LOGFILENAME  </span></span><br><span class="line">                        <span class="keyword">contains</span> <span class="keyword">error</span> messages  </span><br><span class="line">  -v VERBOSITY, <span class="comment">--verbosity=VERBOSITY  </span></span><br><span class="line">                        level <span class="keyword">of</span> information <span class="keyword">and</span> diagnostics provided  </span><br><span class="line">  -p PICKLEABLE, <span class="comment">--pickleable=PICKLEABLE  </span></span><br><span class="line">                        <span class="number">1</span>: ensure Book object <span class="keyword">is</span> pickleable (default); <span class="number">0</span>:  </span><br><span class="line">                        don't bother  </span><br><span class="line">  -m MMAP, <span class="comment">--mmap=MMAP  1: use mmap; 0: don't use mmap; -1: accept heuristic  </span></span><br><span class="line">  -e ENCODING, <span class="comment">--encoding=ENCODING  </span></span><br><span class="line">                        encoding override  </span><br><span class="line">  -f FORMATTING, <span class="comment">--formatting=FORMATTING  </span></span><br><span class="line">                        <span class="number">0</span> (default): no fmt info <span class="number">1</span>: fmt info (all cells)  </span><br><span class="line">  -g GC, <span class="comment">--gc=GC        0: auto gc enabled; 1: auto gc disabled, manual  </span></span><br><span class="line">                        collect <span class="keyword">after</span> each <span class="built_in">file</span>; <span class="number">2</span>: no gc  </span><br><span class="line">  -s ONESHEET, <span class="comment">--onesheet=ONESHEET  </span></span><br><span class="line">                        restrict output <span class="keyword">to</span> this sheet (<span class="built_in">name</span> <span class="keyword">or</span> index)  </span><br><span class="line">  -u, <span class="comment">--unnumbered      omit line numbers or offsets in biff_dump</span></span><br></pre></td></tr></table></figure></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2015/11/02/SQLAlchemy-使用经验/" style="float: left;">
+        ← SQLAlchemy 使用经验
+    </a>
+    
+    
+    <a class="pull-right" href="/2015/10/19/supervisor-教程/">
+        supervisor 教程 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/10/25/Python-Excel-Tutorial-指南/" data-title="Python Excel Tutorial 指南" data-url="http://yoursite.com/2015/10/25/Python-Excel-Tutorial-指南/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 钟蔚蔚. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>nginx配置文件详解 | Weiwei Zhong&#39;s blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Weiwei Zhong's blog">
+    <meta name="author" content="钟蔚蔚">
+    <meta name="description" content="Tyrion" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Weiwei Zhong&#39;s blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_BLANK" class="animsition-link">node</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.liqilei.com/" class="animsition-link">Qilei Li</a></li>
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://pangjiuzala.github.io/" class="animsition-link">Xing Liu</a></li>
+                    
+                    <li><a href="http://www.changhuiyuan.com/" class="animsition-link">Huiyuan Chang</a></li>
+                    
+                    <li><a href="http://www.jianshu.com/users/2e5186b9dd1c/latest_articles" class="animsition-link">Ke Xu</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/profile.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Weiwei Zhong's blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-04-07T06:17:59.000Z" itemprop="datePublished">
+          2015-04-07
+      </time>
+    
+    
+    | 
+    <a href='/tags/Nginx-Linux/'>Nginx Linux</a>
+    
+    
+</span>
+                <h1>nginx配置文件详解</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>中文文档:<a href="http://wiki.nginx.org/NginxChs" target="_blank" rel="external">http://wiki.nginx.org/NginxChs</a></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户 用户组</span></span><br><span class="line"><span class="attribute">user</span> www www;</span><br><span class="line"><span class="comment">#工作进程，根据硬件调整，有人说几核cpu，就配几个，我觉得可以多一点</span></span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">5</span>；</span><br><span class="line"><span class="comment">#错误日志</span></span><br><span class="line">error_log logs/error.log;</span><br><span class="line"><span class="comment">#pid文件位置</span></span><br><span class="line"><span class="attribute">pid</span> logs/nginx.pid;</span><br><span class="line"><span class="attribute">worker_rlimit_nofile</span> <span class="number">8192</span>;</span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">		<span class="comment">#工作进程的最大连接数量，根据硬件调整，和前面工作进程配合起来用，尽量大，但是别把cpu跑到100%就行</span></span><br><span class="line">		<span class="attribute">worker_connections</span> <span class="number">4096</span>;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">	<span class="attribute">include</span> conf/mime.types;</span><br><span class="line">	<span class="comment">#反向代理配置，可以打开proxy.conf看看</span></span><br><span class="line">	<span class="attribute">include</span> /etc/nginx/proxy.conf;</span><br><span class="line">	<span class="comment">#fastcgi配置，可以打开fastcgi.conf看看</span></span><br><span class="line">	<span class="attribute">include</span> /etc/nginx/fastcgi.conf;</span><br><span class="line">	<span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line">	<span class="comment">#日志的格式</span></span><br><span class="line">	<span class="attribute">log_format</span> main <span class="string">'<span class="variable">$remote_addr</span> – <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] <span class="variable">$status</span> '</span></span><br><span class="line">	<span class="string">'"<span class="variable">$request</span>” <span class="variable">$body_bytes_sent</span> “<span class="variable">$http_referer</span>"'</span></span><br><span class="line">	<span class="string">'"<span class="variable">$http_user_agent</span>” “<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line">	<span class="comment">#访问日志</span></span><br><span class="line">	<span class="attribute">access_log</span> logs/access.log main;</span><br><span class="line">	<span class="attribute">sendfile</span> <span class="literal">on</span>;</span><br><span class="line">	<span class="attribute">tcp_nopush</span> <span class="literal">on</span>;</span><br><span class="line">	<span class="comment">#根据实际情况调整，如果server很多，就调大一点</span></span><br><span class="line">	<span class="attribute">server_names_hash_bucket_size</span> <span class="number">128</span>; <span class="comment"># this seems to be required for some vhosts</span></span><br><span class="line">	<span class="comment">#这个例子是fastcgi的例子，如果用fastcgi就要仔细看</span></span><br><span class="line">	<span class="section">server</span> &#123; </span><br><span class="line">		<span class="comment"># php/fastcgi</span></span><br><span class="line">		<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">		<span class="comment">#域名，可以有多个</span></span><br><span class="line">		<span class="attribute">server_name</span> domain1.com www.domain1.com;</span><br><span class="line">		<span class="comment">#访问日志，和上面的级别不一样，应该是下级的覆盖上级的</span></span><br><span class="line">		<span class="attribute">access_log</span> logs/domain1.access.log main;</span><br><span class="line">		<span class="attribute">root</span> html;</span><br><span class="line">		<span class="attribute">location</span> / &#123;</span><br><span class="line">			<span class="attribute">index</span> index.html index.htm index.php;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">#所有php后缀的，都通过fastcgi发送到1025端口上</span></span><br><span class="line">		<span class="comment">#上面include的fastcgi.conf在此应该是有作用，如果你不include，那么就把fastcgi.conf的配置项放在这个下面。</span></span><br><span class="line">		<span class="attribute">location</span> <span class="regexp">~ .php$</span> &#123;</span><br><span class="line">				<span class="attribute">fastcgi_pass</span> <span class="number">127.0.0.1:1025</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#这个是反向代理的例子</span></span><br><span class="line"><span class="section">server</span> &#123; <span class="comment"># simple reverse-proxy</span></span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	<span class="attribute">server_name</span> domain2.com www.domain2.com;</span><br><span class="line">	<span class="attribute">access_log</span> logs/domain2.access.log main;</span><br><span class="line">	<span class="comment">#静态文件，nginx自己处理</span></span><br><span class="line">	<span class="attribute">location</span> <span class="regexp">~ ^/(images|javascript|js|css|flash|media|static)/</span> &#123;</span><br><span class="line">			<span class="attribute">root</span> /var/www/virtual/big.server.com/htdocs;</span><br><span class="line">			<span class="comment">#过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">			<span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	<span class="comment">#把请求转发给后台web服务器，反向代理和fastcgi的区别是，反向代理后面是web服务器，fastcgi后台是fasstcgi监听进程，当然，协议也不一样。</span></span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line">			<span class="attribute">proxy_pass</span> http://127.0.0.1:8080;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。据说nginx可以根据后台响应时间调整。后台需要多个web服务器。</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">upstream</span> big_server_com &#123;</span><br><span class="line">		<span class="attribute">server</span> <span class="number">127.0.0.3:8000</span> weight=<span class="number">5</span>;</span><br><span class="line">		<span class="attribute">server</span> <span class="number">127.0.0.3:8001</span> weight=<span class="number">5</span>;</span><br><span class="line">		<span class="attribute">server</span> <span class="number">192.168.0.1:8000</span>;</span><br><span class="line">		<span class="attribute">server</span> <span class="number">192.168.0.1:8001</span>;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">		<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">		<span class="attribute">server_name</span> big.server.com;</span><br><span class="line">		<span class="attribute">access_log</span> logs/big.server.access.log main;</span><br><span class="line">		<span class="attribute">location</span> / &#123;</span><br><span class="line">				<span class="attribute">proxy_pass</span> http://big_server_com;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—————————————–<br>Nginx 安置后只有一个法式文件，自己并不供给各类办理法式，它是利用参数和体系旌旗灯号机制对 Nginx 历程自己举行节制的。 Nginx 的参数包罗有如下几个：<br>-c ：利用指定的设置装备摆设文件而不是 conf 目次下的 nginx.conf 。<br>-t：测试设置装备摆设文件是否准确，在运行时必要从头加载设置装备摆设的时辰，此号令很是主要，用来检测所点窜的设置装备摆设文件是否有语法错误。<br>-v：表现 nginx 版本号。<br>-V：表现 nginx 的版本号以及编译情况信息以及编译时的参数。<br>比方我们要测试某个设置装备摆设文件是否誊写准确，我们可以利用以下号令<br>sbin/nginx – t – c conf/nginx2.conf</p>
+<p>经由过程旌旗灯号对 Nginx 举行节制<br>Nginx 撑持下表中的旌旗灯号：</p>
+<p>旌旗灯号名</p>
+<p>感化形貌</p>
+<p>TERM, INT</p>
+<p>快速封闭法式，中断当前正在处置的恳求</p>
+<p>QUIT</p>
+<p>处置完当前恳求后，封闭法式</p>
+<p>HUP</p>
+<p>从头加载设置装备摆设，并开启新的事情历程，封闭就的历程，此操纵不会间断恳求</p>
+<p>USR1</p>
+<p>从头打开日记文件，用于切换日记，比方天天天生一个新的日记文件</p>
+<p>USR2</p>
+<p>光滑进级可实行法式</p>
+<p>WINCH</p>
+<p>自在封闭事情历程<br>有两种体例来经由过程这些旌旗灯号去节制 Nginx，第一是经由过程 logs 目次下的 nginx.pid 检察当前运行的 Nginx 的历程ID，经由过程 kill – XXX来节制 Nginx，此中 XXX 便是上表中列出的旌旗灯号名。若是您的体系中只有一个 Nginx 历程，那您也可以经由过程 killall 号令来完成，比方运行 killall – s HUP nginx 来让 Nginx 从头加载设置装备摆设。<br>设置装备摆设 Nginx</p>
+<p>先来看一个现实的设置装备摆设文件：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nobody;<span class="comment"># 事情历程的属主</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">4</span>;<span class="comment"># 事情历程数，一样平常与 CPU 核数等同</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">use</span> <span class="literal">epoll</span>;<span class="comment">#Linux 下机能最好的 event 模式</span></span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">2048</span>;<span class="comment"># 每个事情历程许可最大的同时毗连数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] $request '</span></span><br><span class="line">    <span class="comment">#                  '"$status" $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line">    <span class="comment">#access_log  off;</span></span><br><span class="line">    <span class="attribute">access_log</span>  logs/access.log;<span class="comment"># 日记文件名</span></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line">    <span class="attribute">tcp_nodelay</span>     <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line">    <span class="attribute">include</span>   gzip.conf;</span><br><span class="line">    <span class="comment"># 集群中的全部背景办事器的设置装备摆设信息</span></span><br><span class="line">    <span class="attribute">upstream</span> tomcats &#123;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.11:8080</span> weight=<span class="number">10</span>;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.11:8081</span> weight=<span class="number">10</span>;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.12:8080</span> weight=<span class="number">10</span>;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.12:8081</span> weight=<span class="number">10</span>;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.13:8080</span> weight=<span class="number">10</span>;</span><br><span class="line">		  <span class="attribute">server</span> <span class="number">192.168.0.13:8081</span> weight=<span class="number">10</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span>       <span class="number">80</span>;<span class="comment">#HTTP 的端口</span></span><br><span class="line">        <span class="attribute">server_name</span>  localhost;</span><br><span class="line">        <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ ^/NginxStatus/</span> &#123;</span><br><span class="line">     <span class="attribute">stub_status</span> <span class="literal">on</span>; <span class="comment">#Nginx 状况监控设置装备摆设</span></span><br><span class="line">     <span class="attribute">access_log</span> <span class="literal">off</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ ^/(WEB-INF)/</span> &#123;</span><br><span class="line">     <span class="attribute">deny</span> all;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attribute">location</span> <span class="regexp">~ \.(htm|html|asp|php|gif|jpg|jpeg|png|bmp|ico|rar|css|js|</span></span><br><span class="line">  zip|java|jar|txt|flv|swf|mid|doc|ppt|xls|pdf|txt|mp3|wma)$ &#123;</span><br><span class="line">             <span class="attribute">root</span> /opt/webapp;</span><br><span class="line">     <span class="attribute">expires</span> <span class="number">24h</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">     <span class="attribute">proxy_pass</span> http://tomcats;<span class="comment"># 反向代办署理</span></span><br><span class="line">     <span class="attribute">include</span> proxy.conf;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">404</span> /html/<span class="number">404</span>.html;</span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">  <span class="attribute">error_page</span> <span class="number">502</span> <span class="number">503</span> /html/<span class="number">502</span>.html;</span><br><span class="line">        <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">504</span> /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Nginx 监控<br>上 面是一个现实网站的设置装备摆设实例，此中灰色笔墨为设置装备摆设申明。上述设置装备摆设中，起首我们界说了一个 location ~ ^/NginxStatus/，如许经由过程 <a href="http://localhost/NginxStatus/" target="_blank" rel="external">http://localhost/NginxStatus/</a> 就可以监控到 Nginx 的运行信息，表现的内容如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Active <span class="string">connections:</span> <span class="number">70</span></span><br><span class="line">server accepts handled requests</span><br><span class="line"><span class="number">14553819</span> <span class="number">14553819</span> <span class="number">19239266</span></span><br><span class="line"><span class="string">Reading:</span> <span class="number">0</span> <span class="string">Writing:</span> <span class="number">3</span> <span class="string">Waiting:</span> <span class="number">67</span></span><br></pre></td></tr></table></figure>
+<p>NginxStatus 表现的内容意思如下：<br>· active connections – 当前 Nginx 正处置的勾当毗连数。<br>· server accepts handled requests — 统共处置了 14553819 个毗连 , 乐成建立 14553819 次握手 ( 证实中心没有失败的 ),统共处置了 19239266 个恳求 ( 均匀每次握手处置了 1.3 个数据恳求 )。<br>· reading — nginx 读取到客户真个 Header 信息数。<br>· writing — nginx 返回给客户真个 Header 信息数。<br>· waiting — 开启 keep-alive 的环境下，这个值即是 active – (reading + writing)，意思便是 Nginx 已经处置完正在等待下一次恳求指令的驻留毗连。<br>静态文件处置<br>经由过程正则表达式，我们可让 Nginx 辨认出各类静态文件，比方 images 路径下的全部恳求可以写为：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">~ ^/images</span>/ &#123;</span><br><span class="line">    root /opt/webapp/images;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而下面的设置装备摆设则界说了几种文件范例的恳求处置体例。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.(htm|<span class="string">html</span>|<span class="string">gif</span>|<span class="string">jpg</span>|<span class="string">jpeg</span>|<span class="string">png</span>|<span class="string">bmp</span>|<span class="string">ico</span>|<span class="string">css</span>|<span class="string">js</span>|<span class="string">txt)$ &#123;</span><br><span class="line">    root /opt/webapp;</span><br><span class="line">    expires 24h;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>对付比方图片、静态 HTML 文件、js 剧本文件和 css 样式文件等，我们但愿 Nginx 直接处置并返回给欣赏器，如许可以大大的加速网页欣赏时的速率。是以对付这类文件我们必要经由过程 root 指令来指定文件的存放路径，同时由于这类文件并不常点窜，经由过程 expires 指令来节制其在欣赏器的缓存，以削减不需要的恳求。 expires 指令可以节制 HTTP 应答中的“ Expires ”和“ Cache-Control ”的头标（起到节制页面缓存的感化）。您可以利用比方以下的格局来誊写 Expires：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">expires <span class="number">1</span> <span class="keyword">January, </span><span class="number">1970</span>, <span class="number">00</span>:<span class="number">00</span>:<span class="number">01</span> GMT<span class="comment">;</span></span><br><span class="line">expires <span class="number">60</span>s<span class="comment">;</span></span><br><span class="line">expires <span class="number">30</span>m<span class="comment">;</span></span><br><span class="line">expires <span class="number">24</span>h<span class="comment">;</span></span><br><span class="line">expires <span class="number">1</span>d<span class="comment">;</span></span><br><span class="line">expires max<span class="comment">;</span></span><br><span class="line">expires off<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>动态页面恳求处置<br>Nginx 自己并不撑持此刻风行的 JSP、ASP、PHP、PERL 等动态页面，可是它可以经由过程反向代办署理将恳求发送到后真个办事器，比方 Tomcat、Apache、IIS 等来完成动态页面的恳求处置。前面的设置装备摆设示例中，我们起首界说了由Nginx 直接处置的一些静态文件恳求后，其他全部的恳求经由过程 proxy_pass 指令传送给后真个办事器（在上述例子中是Tomcat）。最简略的 proxy_pass 用法如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span>        http://localhost:8080;</span><br><span class="line">    <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们没有利用到集群，而是将恳求直接送到运行在 8080 端口的 Tomcat 办事上来完成近似 JSP 和 Servlet 的恳求处置。<br>当页面的拜候量很是大的时辰，每每必要多个应用办事器来配合负担动态页面的实行操纵，这时我们就必要利用集群的架构。 Nginx 经由过程 upstream 指令来界说一个办事器的集群，最前面阿谁完备的例子中我们界说了一个名为 tomcats 的集群，这个集群中包罗了三台办事器共 6 个 Tomcat 办事。而 proxy_pass 指令的写法酿成了：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span>        http://tomcats;</span><br><span class="line">    <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Nginx 的集群设置装备摆设中，Nginx 利用最简略的均匀分派法则给集群中的每个节点分派恳求。一旦某个节点失效时，大概从头起效时，Nginx 城市很是实时的处置状况的转变，以包管不会影响到用户的拜候。<br>总结<br>尽 管整个法式包只有五百多 K，但麻雀虽小、五脏俱全。 Nginx 官方供给的各类功效模块包罗万象，连系这些模块可以完备各类百般的设置装备摆设要求，比方：压缩、防盗链、集群、FastCGI、流媒体办事器、 Memcached 撑持、URL 重写等等，更关头的是 Nginx 拥有 Apache 和其他 HTTP 办事器无法对比的高机能。您乃至可以在不转变原有网站的架构上，经由过程在前端引入 Nginx 来晋升网站的拜候速率。<br>本文只是简略先容了 Nginx 的安置以及常见的根基的设置装备摆设和利用，更多关于 Nginx 的信息请阅读文章背面的参考资本。在这里要很是感激我的伴侣——陈磊（chanix@msn.com），他一向在做 Nginx 的中文WIKI（<a href="http://wiki.codemongers.com/NginxChs），同时也是他先容给我这么好的一款软件。" target="_blank" rel="external">http://wiki.codemongers.com/NginxChs），同时也是他先容给我这么好的一款软件。</a><br>若是您的网站是运行在 Linux 下，若是您并没有利用一些很是庞大的并且确定 Nginx 无法完成的功效，那您应该尝尝 Nginx</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/" style="float: left;">
+        ← Linux 技巧：让进程在后台可靠运行的几种方法
+    </a>
+    
+    
+    <a class="pull-right" href="/2015/04/04/flask获取表单以enctype-multipart-form-data格式发送的数据/">
+        flask获取表单以enctype=multipart/form-data格式发送的数据 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/04/07/nginx配置文件详解/" data-title="nginx配置文件详解" data-url="http://yoursite.com/2015/04/07/nginx配置文件详解/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 钟蔚蔚. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/cspilgrimzww" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
