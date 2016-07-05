@@ -1,0 +1,50 @@
+# config
+cover: /img/bg_img.jpg
+logo: /img/profile.png
+top_saying:
+- title: YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.
+- content: A LITTLE BIT MORE FAST,A LITTLE BIT MORE STRONG。
+bottom_saying: YOU MAY DELAY, BUT TIME WILL NOT.
+# Content
+excerpt_link: Read More
+
+rss: /atom.xml
+
+highlightjs: vs
+
+#Works
+works:
+- works_name: node
+  works_url: http://www.nodebeginner.org/index-zh-cn.html
+- works_name: Online Markdown Editor
+  works_url: http://dillinger.io/
+
+#duoshuo name
+duoshuo: duoshuo_name
+
+# Miscellaneous
+github: https://github.com/cspilgrimzww
+
+#about  timeline
+# timeline:
+# - num: 1
+#   word: 2014/06/12-Start
+# - num: 2
+#   word: 2014/11/29-XXX
+# - num: 3
+#   word: 2015/02/18-DDD
+# - num: 4
+#   word: More
+
+#Links
+links:
+- name: Qilei Li
+  link: http://blog.liqilei.com/
+- name: Kieran
+  link: http://go.kieran.top/
+- name: Xing Liu
+  link: http://pangjiuzala.github.io/
+- name: Huiyuan Chang
+  link: http://www.changhuiyuan.com/
+- name: Ke Xu
+  link: http://www.jianshu.com/users/2e5186b9dd1c/latest_articles
