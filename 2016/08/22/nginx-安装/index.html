@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>nginx 安装 | Weiwei Zhong&#39;s blog</title>
+  <title>ubuntu14.04下nginx安装 | Weiwei Zhong&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -230,12 +230,36 @@
           2016-08-22
       </time>
     
+    
+    | 
+    <a href='/tags/nginx-服务器-后端/'>nginx 服务器 后端</a>
+    
+    
 </span>
-                <h1>nginx 安装</h1>
+                <h1>ubuntu14.04下nginx安装</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<h3 id="获取nginx安装包所需要的PGP-key"><a href="#获取nginx安装包所需要的PGP-key" class="headerlink" title="获取nginx安装包所需要的PGP key"></a>获取nginx安装包所需要的PGP key</h3><p>为了能够签名nginx包,使安装过程能够顺利进行,须首先向软件包密钥钟添加nginx签名密钥:</p>
+<ul>
+<li><p>新建一个nginx_signing.key</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">touch nginx_signing.key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点击获取<a href="http://nginx.org/keys/nginx_signing.key" target="_blank" rel="external">签名密钥</a>,<br>并将\<br><code>-----BEGIN PGP PUBLIC KEY BLOCK-----</code>\<br><code>-----END PGP PUBLIC KEY BLOCK-----</code>\<br>这两行(包括这两行)包裹的部分贴到nginx_signing.key里;</p>
+</li>
+<li><p>将密钥添加到apt密钥包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key add nginx_signing.key</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>更新软件源,将下面两行追加到<code>/etc/apt/source.list</code>(下面两行中的<code>trusty</code>只有在系统为ubuntu14.04时才有效,其他系统版本请参考<a href="http://nginx.org/en/linux_packages.html#distributions" target="_blank" rel="external">codename</a>),:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://nginx.org/packages/ubuntu/ trusty nginx</span><br><span class="line">deb-src http://nginx.org/packages/ubuntu/ trusty nginx</span><br></pre></td></tr></table></figure></p>
+<p>然后<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install nginx</span><br></pre></td></tr></table></figure></p>
+<p>安装完成后,浏览器访问<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//localhost</span></span><br></pre></td></tr></table></figure></p>
+<p>若出现以下文字,表示安装成功</p>
+<p>Welcome to nginx!</p>
+<p>If you see this page, the nginx web server is successfully installed and working. Further configuration is required.</p>
+<p>For online documentation and support please refer to nginx.org.<br>Commercial support is available at nginx.com.</p>
+<p>Thank you for using nginx.</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
@@ -249,7 +273,7 @@
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/08/22/nginx-安装/" data-title="nginx 安装" data-url="http://yoursite.com/2016/08/22/nginx-安装/"></div>
+<div class="ds-thread" data-thread-key="2016/08/22/nginx-安装/" data-title="ubuntu14.04下nginx安装" data-url="http://yoursite.com/2016/08/22/nginx-安装/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
