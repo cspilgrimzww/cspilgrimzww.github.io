@@ -228,6 +228,45 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/">Mysql备份还原数据库之mysqldump实例及参数详细说明</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2015-07-25T17:06:40.000Z" itemprop="datePublished">
+          2015-07-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/Mysql/'>Mysql</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        我们在运营项目的过程中肯定会遇到备份数据库，还原数据库的情况，我们一般用一下两种方式来处理：
+1.使用into outfile 和 load data infile导入导出备份数据
+这种方法的好处是，导出的数据可以自己规定格式，并且导出的是纯数据，不存在建表信息，你可以直接导入另外一个同数据库的不同表中，相对于mysqldump比较灵活机动。
+我们来看下面的例子：
+（1）下面的mysql命令是把select的mytable表中的数据导出
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2015/07/21/markdown简明语法/">markdown简明语法</a></h3>
                     <span>
                         <span class="post-meta">
@@ -562,42 +601,6 @@ U
                     
                     <p class="pull-right readMore">
                         <a href="/2015/05/11/Permissions-0644-for-‘-root-ssh-id-rsa’-are-too-open处理/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">Linux 技巧：让进程在后台可靠运行的几种方法</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-05-04T19:06:38.000Z" itemprop="datePublished">
-          2015-05-05
-      </time>
-    
-    
-    | 
-    <a href='/tags/Linux/'>Linux</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        想让进程在断开连接后依然保持运行？如果该进程已经开始运行了该如何补救？ 如果有大量这类需求如何简化操作？
-我们经常会碰到这样的问题，用 telnet/ssh 登录了远程的 Linux 服务器，运行了一些耗时较长的任务， 结果却由于网络的不稳定导致任务中途失败。如何让命令提交后不受本地关闭终端窗口/网络断开连接的干扰呢？下面举了一些例子， 您可以针对不同的场景选择不同的方式来处理这个问题。nohup/setsid/&amp;场景：如果只是
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">Read More...</a>
                     </p>
                     
                 </div>

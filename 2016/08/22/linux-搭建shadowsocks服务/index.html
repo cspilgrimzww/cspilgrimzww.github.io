@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Weiwei Zhong&#39;s blog</title>
+  <title>linux 搭建shadowsocks服务 | Weiwei Zhong&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -220,164 +220,69 @@
         <!-- // End height spacing helper -->
 
         <!-- ============================ END Hero Image =========================== -->
-      <!-- ============================ Content =========================== -->
-
+      
 <section id="intro">
     <div class="container">
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">Linux 技巧：让进程在后台可靠运行的几种方法</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-05-04T19:06:38.000Z" itemprop="datePublished">
-          2015-05-05
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-22T12:05:12.000Z" itemprop="datePublished">
+          2016-08-22
       </time>
     
     
     | 
-    <a href='/tags/Linux/'>Linux</a>
+    <a href='/tags/linux-shadowsocks-ssserver-服务器/'>linux shadowsocks ssserver 服务器</a>
     
     
 </span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        想让进程在断开连接后依然保持运行？如果该进程已经开始运行了该如何补救？ 如果有大量这类需求如何简化操作？
-我们经常会碰到这样的问题，用 telnet/ssh 登录了远程的 Linux 服务器，运行了一些耗时较长的任务， 结果却由于网络的不稳定导致任务中途失败。如何让命令提交后不受本地关闭终端窗口/网络断开连接的干扰呢？下面举了一些例子， 您可以针对不同的场景选择不同的方式来处理这个问题。nohup/setsid/&amp;场景：如果只是
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
+                <h1>linux 搭建shadowsocks服务</h1>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/04/07/nginx配置文件详解/">nginx配置文件详解</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-04-07T06:17:59.000Z" itemprop="datePublished">
-          2015-04-07
-      </time>
-    
-    
-    | 
-    <a href='/tags/Nginx-Linux/'>Nginx Linux</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        中文文档:http://wiki.nginx.org/NginxChs
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081#用户 用户组user www www;#工作进程，根据硬件调
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/04/07/nginx配置文件详解/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/04/04/flask获取表单以enctype-multipart-form-data格式发送的数据/">flask获取表单以enctype=multipart/form-data格式发送的数据</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-04-03T19:06:43.000Z" itemprop="datePublished">
-          2015-04-04
-      </time>
-    
-    
-    | 
-    <a href='/tags/Flask/'>Flask</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        最早的HTTP POST是不支持文件上传的，给编程开发带来很多问题。但是在1995年，ietf出台了rfc1867,也就是《RFC 1867 -Form-based File Upload in HTML》，用以支持文件上传。所以Content-Type的类型扩充了multipart/form-data用以支持向服务器发送二进制数据。因此发送post请求时候，表单属性enctype共有二个值可选，这个属性管理的是表单的MIME编码：
- 
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/04/04/flask获取表单以enctype-multipart-form-data格式发送的数据/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/04/03/hello-world/">Hello World</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-04-02T19:19:11.000Z" itemprop="datePublished">
-          2015-04-03
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        I start my Hexo life from here[MARKED 2015-04-03]Archives will be migrated there from my csdn area.
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="为Debian-Ubuntu-安装shadowsocks服务端："><a href="#为Debian-Ubuntu-安装shadowsocks服务端：" class="headerlink" title="为Debian / Ubuntu 安装shadowsocks服务端："></a>为Debian / Ubuntu 安装shadowsocks服务端：</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">instal </span><span class="keyword">shadowsocks</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建shadowskcs服务端-ssserver-配置"><a href="#创建shadowskcs服务端-ssserver-配置" class="headerlink" title="创建shadowskcs服务端(ssserver)配置:"></a>创建shadowskcs服务端(ssserver)配置:</h3><ul>
+<li><p>创建shadowsocks.conf文件</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim <span class="meta-keyword">/etc/</span>shadowsocks.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向shadowskocks.jsonf加入如下内容</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>:<span class="string">"0.0.0.0"</span>,</span><br><span class="line">  <span class="attr">"server_port"</span>:<span class="number">7080</span>,</span><br><span class="line">  <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">  <span class="attr">"local_port"</span>:<span class="number">1080</span>,</span><br><span class="line">  <span class="attr">"password"</span>:<span class="string">"xuxiaoke"</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>:<span class="number">300</span>,</span><br><span class="line">  <span class="attr">"method"</span>:<span class="string">"aes-256-cfb"</span>,</span><br><span class="line">  <span class="attr">"fast_open"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">"workers"</span>: <span class="number">1</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解释:\<br>每个字段的的解释：\<br>server   服务端监听的地址，服务端可填写 0.0.0.0\<br>server_port     服务器的端口(只要不与现有的端口冲突，随你填写了，我填7080)\<br>local_address     本地监听的地址，直接写127.0.0.1\<br>local_port     本地的端口，随便写，只要不冲突，一般是1080\<br>password     你的shadowsocks连接密码\<br>timeout     超时时间，单位秒\<br>method     加密方式。默认是: “aes-256-cfb”\<br>workers    进程数,这个参数只有unix/linux下可用。\<br>详见：see <a href="https://github.com/clowwindy/shadowsocks/wiki/Encryption\" target="_blank" rel="external">https://github.com/clowwindy/shadowsocks/wiki/Encryption\</a></p>
+</li>
+</ul>
+<h3 id="运行ss服务"><a href="#运行ss服务" class="headerlink" title="运行ss服务:"></a>运行ss服务:</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c <span class="meta-keyword">/etc/</span>shadowsocks.json</span><br></pre></td></tr></table></figure>
+<p>看到如下信息表示运行成功<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">loading</span> <span class="selector-tag">libcrypto</span> <span class="selector-tag">from</span> <span class="selector-tag">libcrypto</span><span class="selector-class">.so</span><span class="selector-class">.1</span><span class="selector-class">.0</span><span class="selector-class">.0</span></span><br><span class="line">&gt; <span class="selector-tag">starting</span> <span class="selector-tag">server</span> <span class="selector-tag">at</span> 0<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-pseudo">:7080</span></span><br><span class="line">&gt; <span class="selector-tag">worker</span> <span class="selector-tag">started</span></span><br><span class="line">&gt; <span class="selector-tag">worker</span> <span class="selector-tag">started</span></span><br></pre></td></tr></table></figure></p>
 
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/04/03/hello-world/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
-        
         <nav class="pagination" role="pagination">
-          <a class="pull-left" href="/page/3/">← Newer Posts</a>
-          
-        </nav>
+    
+    
+    <a class="pull-right" href="/2016/07/24/回调函数与异步/">
+        回调函数与异步 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/22/linux-搭建shadowsocks服务/" data-title="linux 搭建shadowsocks服务" data-url="http://yoursite.com/2016/08/22/linux-搭建shadowsocks服务/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>YOU MAY DELAY, BUT TIME WILL NOT.</p>
-        </div>
-    </div>
-</section>
-<!-- ============================ END Content =========================== -->
+
 
       
 <!-- ============================ Footer =========================== -->

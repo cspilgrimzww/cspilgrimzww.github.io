@@ -228,6 +228,44 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2015/11/09/使用Python的OpenSSL库来进行RSA加密/">使用Python的OpenSSL库来进行RSA加密</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2015-11-08T17:04:04.000Z" itemprop="datePublished">
+          2015-11-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/Python-OpenSSL/'>Python OpenSSL</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        使用Python的OpenSSL库（如pyopenssl）可以很便捷地对数据进行RSA的加密，方法如下：
+1 使用openssl命令生成私钥1openssl genrsa -out private.pem -f4 1024    #生成私钥，指数值为10001
+2 使用Python进行加密：
+###代码片段123456789from OpenSSL.crypto import load_privatekey, FILETYPE_PEM,
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2015/11/09/使用Python的OpenSSL库来进行RSA加密/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2015/11/02/SQLAlchemy-使用经验/">SQLAlchemy 使用经验</a></h3>
                     <span>
                         <span class="post-meta">
@@ -554,45 +592,6 @@ Flask-Admin把每一个菜单（超链接）看作一个view，注
                     
                     <p class="pull-right readMore">
                         <a href="/2015/08/05/阿里云部署-Flask-WSGI-Nginx-详解/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/">Mysql备份还原数据库之mysqldump实例及参数详细说明</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2015-07-25T17:06:40.000Z" itemprop="datePublished">
-          2015-07-26
-      </time>
-    
-    
-    | 
-    <a href='/tags/Mysql/'>Mysql</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        我们在运营项目的过程中肯定会遇到备份数据库，还原数据库的情况，我们一般用一下两种方式来处理：
-1.使用into outfile 和 load data infile导入导出备份数据
-这种方法的好处是，导出的数据可以自己规定格式，并且导出的是纯数据，不存在建表信息，你可以直接导入另外一个同数据库的不同表中，相对于mysqldump比较灵活机动。
-我们来看下面的例子：
-（1）下面的mysql命令是把select的mytable表中的数据导出
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2015/07/26/Mysql备份还原数据库之mysqldump实例及参数详细说明/">Read More...</a>
                     </p>
                     
                 </div>
