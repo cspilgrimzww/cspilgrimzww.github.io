@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives | Weiwei Zhong&#39;s blog</title>
+  <title>linux文件目录权限详解[未完] | Weiwei Zhong&#39;s blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -223,85 +223,65 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/05/18/Pycharm中创建的flask项目，不能关联Jinja2模版的问题解决/">Pycharm中创建的flask项目，不能关联Jinja2模版的问题解决</a></h4>
-                            
-                            <p><time datetime="2015-05-17T19:19:11.000Z"><a href="/2015/05/18/Pycharm中创建的flask项目，不能关联Jinja2模版的问题解决/">2015-05-18</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/05/11/Permissions-0644-for-‘-root-ssh-id-rsa’-are-too-open处理/">Permissions 0644 for ‘/root/.ssh/id_rsa’ are too open处理</a></h4>
-                            
-                            <p><time datetime="2015-05-11T14:49:29.000Z"><a href="/2015/05/11/Permissions-0644-for-‘-root-ssh-id-rsa’-are-too-open处理/">2015-05-11</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">Linux 技巧：让进程在后台可靠运行的几种方法</a></h4>
-                            
-                            <p><time datetime="2015-05-04T19:06:38.000Z"><a href="/2015/05/05/Linux-技巧：让进程在后台可靠运行的几种方法/">2015-05-05</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/04/07/nginx配置文件详解/">nginx配置文件详解</a></h4>
-                            
-                            <p><time datetime="2015-04-07T06:17:59.000Z"><a href="/2015/04/07/nginx配置文件详解/">2015-04-07</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/04/04/flask获取表单以enctype-multipart-form-data格式发送的数据/">flask获取表单以enctype=multipart/form-data格式发送的数据</a></h4>
-                            
-                            <p><time datetime="2015-04-03T19:06:43.000Z"><a href="/2015/04/04/flask获取表单以enctype-multipart-form-data格式发送的数据/">2015-04-04</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/04/03/hello-world/">Hello World</a></h4>
-                            
-                            <p><time datetime="2015-04-02T19:19:11.000Z"><a href="/2015/04/03/hello-world/">2015-04-03</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-24T13:38:19.000Z" itemprop="datePublished">
+          2016-08-24
+      </time>
+    
+</span>
+                <h1>linux文件目录权限详解[未完]</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>在linux中的每一个文件或目录都包含有访问权限，这些访问权限决定了谁能访问和如何访问这些文件和目录。</p>
+<p><em>通过设定权限可以从以下三种访问方式限制访问权限</em>：只允许用户自己访问；允许一个预先指定的用户组中的用户访问；允许系统中的任何用户访问。同时，用户能够控制一个给定的文件或目录的访问程度。一个文件活目录可能有读、写及执行权限。当创建一个文件时，系统会自动地赋予文件所有者读和写的权限，这样可以允许所有者能够显示文件内容和修改文件。文件所有者可以将这些权限改变为任何他想指定的权限。一个文件也许只有读权限，禁止任何修改。文件也可能只有执行权限，允许它想一个程序一样执行。</p>
+<p><em>三种不同的用户类型能够访问一个目录或者文件</em>：所有着、用户组或其他用户。所有者就是创建文件的用户，用户是所有用户所创建的文件的所有者，用户可以允许所在的用户组能访问用户的文件。通常，用户都组合成用户组，例如，某一类或某一项目中的所有用户都能够被系统管理员归为一个用户组，一个用户能够授予所在用户组的其他成员的文件访问权限。最后，用户也将自己的文件向系统内的所有用户开放，在这种情况下，系统内的所有用户都能够访问用户的目录或文件。在这种意义上，系统内的其他所有用户就是other用户类。<br>每一个用户都有它自身的读、写和执行权限。第一套权限控制访问自己的文件权限，即所有者权限。第二套权限控制用户组访问其中一个用户的文件的权限。第三套权限控制其他所有用户访问一个用户的文件的权限，这三套权限赋予用户不同类型（即所有者、用户组和其他用户）的读、写及执行权限就构成了一个有9种类型的权限组。</p>
+<p>我们可以用-l参数的ls命令显示文件的详细信息，其中包括权限。如下所示：</p>
+<p>yekai@kebao:/media/sda5/软件压缩/Linux$ ls -lh<br>总用量 191M<br>-rwxrwx— 1 root plugdev 18M 2007-02-28 18:05 ActionCube_v0.92.tar.bz2<br>-rwxrwx— 1 root plugdev 60M 2007-04-30 22:52 nexuiz-223.zip<br>-rwxrwx— 1 root plugdev 7.4M 2007-04-25 02:16 stardict-oxford-gb-2.4.2.tar.bz2<br>-rwxrwx— 1 root plugdev 102M 2007-05-01 18:22 tremulous-1.1.0-installer.x86.run<br>-rwxrwx— 1 root plugdev 4.9M 2007-04-30 14:32 wqy-bitmapfont-0.8.1-7_all.deb.bin</p>
+<p>当执行ls -l 或 ls -al 命令后显示的结果中，最前面的第2～10个字符是用来表示权限。第一个字符一般用来区分文件和目录：</p>
+<p>d：表示是一个目录，事实上在ext2fs中，目录是一个特殊的文件。<br>－：表示这是一个普通的文件。<br>l: 表示这是一个符号链接文件，实际上它指向另一个文件。<br>b、c：分别表示区块设备和其他的外围设备，是特殊类型的文件。<br>s、p：这些文件关系到系统的数据结构和管道，通常很少见到。<br>下面详细介绍一下权限的种类和设置权限的方法。</p>
+<h3 id="一般权限"><a href="#一般权限" class="headerlink" title="一般权限"></a>一般权限</h3><p>第2～10个字符当中的每3个为一组，左边三个字符表示所有者权限，中间3个字符表示与所有者同一组的用户的权限，右边3个字符是其他用户的权限。这三个一组共9个字符，代表的意义如下：</p>
+<p>r(Read，读取)：对文件而言，具有读取文件内容的权限；对目录来说，具有浏览目录的权<br>w(Write,写入)：对文件而言，具有新增、修改文件内容的权限；对目录来说，具有删除、移动目录内文件的权限。<br>x(eXecute，执行)：对文件而言，具有执行文件的权限；对目录了来说该用户具有进入目录的权限。</p>
+<p>－：表示不具有该项权限。<br>下面举例说明：<br>－rwx——: 文件所有者对文件具有读取、写入和执行的权限。<br>-rwxr―r–: 文件所有者具有读、写与执行的权限，其他用户则具有读取的权限。<br>-rw-rw-r-x: 文件所有者与同组用户对文件具有读写的权限，而其他用户仅具有读取和执行的权限。<br>drwx–x–x: 目录所有者具有读写与进入目录的权限,其他用户近能进入该目录，却无法读取任何数据。<br>Drwx——: 除了目录所有者具有完整的权限之外，其他用户对该目录完全没有任何权限。</p>
+<p>每个用户都拥有自己的专属目录，通常集中放置在/home目录下，这些专属目录的默认权限为rwx——:</p>
+<p>表示目录所有者本身具有所有权限，其他用户无法进入该目录。执行mkdir命令所创建的目录，其默认权限为rwxr-xr-x,用户可以根据需要修改目录的权限。</p>
+<p>此外，默认的权限可用umask命令修改，用法非常简单，只需执行umask 777 命令，便代表屏蔽所有的权限，因而之后建立的文件或目录，其权限都变成000，依次类推。通常root帐号搭配umask命令的数值为022、027和 077，普通用户则是采用002，这样所产生的权限依次为755、750、700、775。有关权限的数字表示法，后面将会详细说明。</p>
+<p>用户登录系统时，用户环境就会自动执行rmask命令来决定文件、目录的默认权限。</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>YOU MAY DELAY, BUT TIME WILL NOT.</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/08/22/nginx-安装/">
+        ubuntu14.04下nginx安装 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/24/linux文件目录权限详解-未完/" data-title="linux文件目录权限详解[未完]" data-url="http://yoursite.com/2016/08/24/linux文件目录权限详解-未完/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
